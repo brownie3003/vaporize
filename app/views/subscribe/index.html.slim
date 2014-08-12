@@ -1,10 +1,22 @@
-.masthead.clearfix
-    .inner
-        h3.masthead-brand Vaporize
-        ul.nav.masthead-nav
-            li.active
-                a href="#"  Home
-            li
-                a href="#"  Features
-            li
-                a href="#"  Contact
+.row
+    .container
+        .question
+            h2 How many cigarettes do you smoke a day?
+            select.form-control
+                option less than 10
+                option 10 - 20
+                option more than 20
+        .next-question
+            span.glyphicon.glyphicon-circle-arrow-down
+.row
+    .container
+        .question
+            h2 What type of cigarette do you smoke?
+            .radio
+                label
+                    input type="radio" name="optionsRadios" id="optionsRadios1" value="option1"
+                    | Tabacco
+            .radio
+                label
+                    input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"
+                    | Menthol

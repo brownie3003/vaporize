@@ -1,6 +1,28 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-@import "cover";
 @import "homepage";
 @import "subscribe";
+
+.jumbotron {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    margin-bottom: 0px;
+    background: url("hero.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    display: table;
+    .container {
+        display: table-cell;
+        vertical-align: middle;
+        .hero-message {
+            width: 66%;
+            color: white;
+            margin: 0 auto;
+            text-align: center;
+        }
+    }
+}
