@@ -48,3 +48,4 @@ gem 'bootstrap-sass', '3.2.0.1'
 gem 'autoprefixer-rails', '2.2.0.20140727'
 
 ruby "2.1.1"
+gem 'jquery-turbolinks', '2.0.2'
