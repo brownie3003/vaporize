@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0b265380-4a4a-4e54-85c1-1c7290cf9635" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/application.css.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/application.css.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="vaporize.iws" />
@@ -413,7 +412,11 @@
       <created>1408022703026</created>
       <updated>1408022703027</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="use sass image path">
+      <created>1408026520616</created>
+      <updated>1408026520616</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -480,7 +483,8 @@
     <MESSAGE value="Basic styling and add the first two questions." />
     <MESSAGE value="Focus on engineering" />
     <MESSAGE value="add base subscription" />
-    <option name="LAST_COMMIT_MESSAGE" value="add base subscription" />
+    <MESSAGE value="use sass image path" />
+    <option name="LAST_COMMIT_MESSAGE" value="use sass image path" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
