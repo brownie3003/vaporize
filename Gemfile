@@ -29,6 +29,7 @@ gem 'spring',        group: :development
 # Heroku
 group :production do
     gem 'rails_12factor'
+    gem 'pg'
 end
 
 
