@@ -27,8 +27,11 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 
 # Heroku
-gem 'rails_12factor', group: :production
-gem 'pg', group: :production
+group :production do
+    gem 'rails_12factor'
+end
+
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
