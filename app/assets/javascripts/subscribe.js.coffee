@@ -3,7 +3,8 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $ ->
-    user = {}
+    user =
+        subscription: "20"
 
     # Return true if all questions have been answered.
     signupComplete = ->
