@@ -2,21 +2,52 @@
     .container
         .question
             h2 How many cigarettes do you smoke a day?
-            select.form-control
-                option less than 10
-                option 10 - 20
-                option more than 20
-        .next-question
-            span.glyphicon.glyphicon-circle-arrow-down
+            select.form-control.subscription
+                option value="20" less than 10
+                option value="25" 10 - 20
+                option value="30" more than 20
+        /.next-question
+        /    span.glyphicon.glyphicon-circle-arrow-down
 .row
     .container
         .question
-            h2 What type of cigarette do you smoke?
-            .radio
-                label
-                    input type="radio" name="optionsRadios" id="optionsRadios1" value="option1"
-                    | Tabacco
-            .radio
-                label
-                    input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"
-                    | Menthol
+            h2 What flavor of cigarette do you smoke?
+            form.flavor
+                .radio
+                    label
+                        input type="radio" name="flavor" id="optionsRadios1" value="tobacco"
+                        | Tobacco
+                .radio
+                    label
+                        input type="radio" name="flavor" id="optionsRadios2" value="menthol"
+                        | Menthol
+.row
+    .container
+        .question
+            h2 Do you require an e-cigarette?
+            form.cigarette
+                .radio
+                    label
+                        input type="radio" name="cigarette" id="optionsRadios1" value="true"
+                        | Yes
+                .radio
+                    label
+                        input type="radio" name="cigarette" id="optionsRadios2" value="false"
+                        | No I already have my own e-cigarette. I just require e-liquid.
+.row.hidden.offer
+    .container
+        .subscription
+            .h1 Sign Up
+            .col-md-6.one-month
+                h4 Monthly
+                h2.price
+                p
+                    | We will deliver exactly the right amount of e-liquid you will need each month. Pay on a month by
+                    |  month basis, cancel at any time.
+                p.cigarette
+
+            .col-md-6.three-months
+                h4 3 Months
+                h2.price
+                p.discount
+
