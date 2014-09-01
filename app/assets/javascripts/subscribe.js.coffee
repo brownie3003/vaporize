@@ -21,7 +21,7 @@ $ ->
         $("#offer").removeClass("hidden")
         $('html, body').animate({
             scrollTop: $("#offer").offset().top
-        }, 500);
+        }, 1000);
         $(".one-month").find(".price").html("£" + user.subscription + "/month")
         $(".three-months").find(".price").html("£" + threeMonthPrice + " upfront payment" )
         if user.cigarette == "true"
