@@ -25,7 +25,7 @@ $ ->
         $(".one-month").find(".price").html("£" + user.subscription + "/month")
         $(".three-months").find(".price").html("£" + threeMonthPrice + " upfront payment" )
         if user.cigarette == "true"
-            $(".one-month").find(".price").append(" + £42.99 for the e-cigarette kit")
+            $(".one-month").find(".price").append(" + £42 for the e-cigarette kit")
             $(".discount").html("If you sign up for 3 months in advance, the e-cigarette kit will be free")
         else
             discountedPrice = discountPrice(user.subscription)
@@ -51,5 +51,4 @@ $ ->
             moveToNextQuestion(currentQuestion)
         showNavigationArrows()
         showSubscription() if signupComplete()
-
 
