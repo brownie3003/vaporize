@@ -6,6 +6,9 @@ $ ->
     user =
         subscription: "20"
 
+    # Hide navigation arrows at the start
+    $(".prev-question, .next-question").hide()
+
     # Return true if all questions have been answered.
     signupComplete = ->
         user.subscription != undefined && user.flavor != undefined && user.cigarette != undefined
@@ -15,7 +18,10 @@ $ ->
 
     showSubscription = ->
         threeMonthPrice = parseInt(user.subscription) * 3
-        $(".offer").removeClass("hidden")
+        $("#offer").removeClass("hidden")
+        $('html, body').animate({
+            scrollTop: $("#offer").offset().top
+        }, 500);
         $(".one-month").find(".price").html("£" + user.subscription + "/month")
         $(".three-months").find(".price").html("£" + threeMonthPrice + " upfront payment" )
         if user.cigarette == "true"
@@ -26,18 +32,24 @@ $ ->
             $(".three-months").find(".price").html("£" + discountedPrice + " upfront payment")
             $(".discount").html("Get 10% off if you sign up for 3 months")
 
+    moveToNextQuestion = (currentQuestion) ->
+        # Get id for next question
+        nextQuestion = "#question-" + (currentQuestion + 1)
+        $('html, body').animate({
+            scrollTop: $(nextQuestion).offset().top
+        }, 1000);
 
+    showNavigationArrows = ->
+        $(".prev-question, .next-question").delay(1000).fadeIn(500)
 
-    $('.subscription').on 'change', ->
+    $('#subscription').on 'change', (e) ->
+        currentQuestion = $(e.target).data("question")
         user.subscription = $('.subscription').val()
-        showSubscription() if signupComplete()
-
-    $('.flavor').on 'change', ->
         user.flavor = $('input:radio[name = "flavor"]:checked').val()
-        showSubscription() if signupComplete()
-
-    $('.cigarette').on 'change', ->
         user.cigarette = $('input:radio[name = "cigarette"]:checked').val()
+        if currentQuestion != 3
+            moveToNextQuestion(currentQuestion)
+        showNavigationArrows()
         showSubscription() if signupComplete()
 
 

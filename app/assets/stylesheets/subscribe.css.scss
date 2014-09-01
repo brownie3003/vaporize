@@ -3,6 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .row {
+    position: absolute;
     padding-top: 60px;
     height: 100%;
     width: 100%;
@@ -27,8 +28,29 @@
                 font-size: xx-large;
             }
         }
+        .prev-question {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            padding-top: 60px;
+            .glyphicon {
+                position: relative;
+                left: -50%;
+                font-size: xx-large;
+            }
+        }
         .subscription {
             text-align: center;
         }
     }
+}
+
+#question-2 {
+    top: 100%;
+}
+#question-3 {
+    top: 200%;
+}
+#offer {
+    top: 300%;
 }

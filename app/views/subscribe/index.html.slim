@@ -1,53 +1,62 @@
-.row
-    .container
-        .question
-            h2 How many cigarettes do you smoke a day?
-            select.form-control.subscription
-                option value="20" less than 10
-                option value="25" 10 - 20
-                option value="30" more than 20
-        /.next-question
-        /    span.glyphicon.glyphicon-circle-arrow-down
-.row
-    .container
-        .question
-            h2 What flavor of cigarette do you smoke?
-            form.flavor
+form#subscription
+    .row#question-1
+        .container
+            .question
+                h2 How many cigarettes do you smoke a day?
+                select.form-control.subscription data-question=1
+                    option value="20" less than 10
+                    option value="25" 10 - 20
+                    option value="30" more than 20
+            .next-question
+                span.glyphicon.glyphicon-circle-arrow-down
+    .row#question-2
+        .container
+            .prev-question
+                span.glyphicon.glyphicon-circle-arrow-up
+            .question
+                h2 What flavor of cigarette do you smoke?
                 .radio
                     label
-                        input type="radio" name="flavor" id="optionsRadios1" value="tobacco"
+                        input type="radio" name="flavor" id="optionsRadios1" value="tobacco" data-question=2
                         | Tobacco
                 .radio
                     label
-                        input type="radio" name="flavor" id="optionsRadios2" value="menthol"
+                        input type="radio" name="flavor" id="optionsRadios2" value="menthol" data-question=2
                         | Menthol
-.row
-    .container
-        .question
-            h2 Do you require an e-cigarette?
-            form.cigarette
+            .next-question
+                span.glyphicon.glyphicon-circle-arrow-down
+    .row#question-3
+        .container
+            .prev-question
+                span.glyphicon.glyphicon-circle-arrow-up
+            .question
+                h2 Do you require an e-cigarette?
                 .radio
                     label
-                        input type="radio" name="cigarette" id="optionsRadios1" value="true"
+                        input type="radio" name="cigarette" id="optionsRadios1" value="true" data-question=3
                         | Yes
                 .radio
                     label
-                        input type="radio" name="cigarette" id="optionsRadios2" value="false"
+                        input type="radio" name="cigarette" id="optionsRadios2" value="false" data-question=3
                         | No I already have my own e-cigarette. I just require e-liquid.
-.row.hidden.offer
-    .container
-        .subscription
-            .h1 Sign Up
-            .col-md-6.one-month
-                h4 Monthly
-                h2.price
-                p
-                    | We will deliver exactly the right amount of e-liquid you will need each month. Pay on a month by
-                    |  month basis, cancel at any time.
-                p.cigarette
+            .next-question
+                span.glyphicon.glyphicon-circle-arrow-down
+    .row.hidden#offer
+        .container
+            .prev-question
+                span.glyphicon.glyphicon-circle-arrow-up
+            .subscription
+                .h1 Sign Up
+                .col-md-6.one-month
+                    h4 Monthly
+                    h2.price
+                    p
+                        | We will deliver exactly the right amount of e-liquid you will need each month. Pay on a month by
+                        |  month basis, cancel at any time.
+                    p.cigarette
 
-            .col-md-6.three-months
-                h4 3 Months
-                h2.price
-                p.discount
+                .col-md-6.three-months
+                    h4 3 Months
+                    h2.price
+                    p.discount
 
