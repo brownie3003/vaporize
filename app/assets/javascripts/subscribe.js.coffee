@@ -3,15 +3,18 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $ ->
-    user =
-        subscription: "20"
+    user = {}
+
+    # Hide these until user tells us whether they need an e-cigarette or not
+    $("#subscriptionLevel").hide()
+    $("#dailyCigarettes").hide()
 
     # Hide navigation arrows at the start
     $(".prev-question, .next-question").hide()
 
     # Return true if all questions have been answered.
     signupComplete = ->
-        user.subscription != undefined && user.flavor != undefined && user.cigarette != undefined
+        user.subscription != undefined && user.cigarette != undefined
 
     discountPrice = (price) ->
         (parseInt(price) * 3 * 0.9).toFixed(2)
@@ -32,23 +35,37 @@ $ ->
             $(".three-months").find(".price").html("£" + discountedPrice + " upfront payment")
             $(".discount").html("Get 10% off if you sign up for 3 months")
 
-    moveToNextQuestion = (currentQuestion) ->
-        # Get id for next question
-        nextQuestion = "#question-" + (currentQuestion + 1)
+    moveToNextQuestion = (next) ->
         $('html, body').animate({
-            scrollTop: $(nextQuestion).offset().top
+            scrollTop: $(next).offset().top
         }, 1000);
 
     showNavigationArrows = ->
         $(".prev-question, .next-question").delay(1000).fadeIn(500)
 
     $('#subscription').on 'change', (e) ->
-        currentQuestion = $(e.target).data("question")
-        user.subscription = $('.subscription').val()
-        user.flavor = $('input:radio[name = "flavor"]:checked').val()
-        user.cigarette = $('input:radio[name = "cigarette"]:checked').val()
-        if currentQuestion != 3
-            moveToNextQuestion(currentQuestion)
+        if $(e.target).data('question') == 'e-cigarette'
+            cigaretteValue = $('input:radio[name = "e-cigarette"]:checked').val()
+
+            #Assign cigarette choice to user object
+            if cigaretteValue == "true"
+                user.cigarette = true
+                $("#subscriptionLevel").hide()
+                $("#dailyCigarettes").show()
+            else
+                user.cigarette = false
+                $("#dailyCigarettes").hide()
+                $("#subscriptionLevel").show()
+
+            moveToNextQuestion('#eLiquid')
+
+        if $(e.target).data('question') == 'subscription level'
+            user.subscription = $('.subscription').val()
+            moveToNextQuestion('#flavours')
+
         showNavigationArrows()
+
+    $("#showMeTheMoney").on 'click', (e) ->
+        e.preventDefault()
         showSubscription() if signupComplete()
 

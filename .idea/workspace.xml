@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0b265380-4a4a-4e54-85c1-1c7290cf9635" name="Default" comment="">
+    <list default="true" id="0b265380-4a4a-4e54-85c1-1c7290cf9635" name="Default" comment="sync scroll speeds">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/subscribe/index.html.slim" afterPath="$PROJECT_DIR$/app/views/subscribe/index.html.slim" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/subscribe.css.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/subscribe.css.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/subscribe.js.coffee" afterPath="$PROJECT_DIR$/app/assets/javascripts/subscribe.js.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -30,11 +32,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="subscribe.js.coffee" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="subscribe.js.coffee" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/subscribe.js.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6639839" vertical-offset="45" max-vertical-offset="900">
-              <caret line="25" column="68" selection-start-line="25" selection-start-column="68" selection-end-line="25" selection-end-column="68" />
+            <state vertical-scroll-proportion="21.115385" vertical-offset="684" max-vertical-offset="1155">
+              <caret line="9" column="30" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -43,16 +45,15 @@
       <file leaf-file-name="workspace.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="13185">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="13935">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
-                <marker date="1409611337000" expanded="true" signature="59:52950" placeholder="..." />
-                <marker date="1409611337000" expanded="true" signature="98:254" placeholder="..." />
-                <marker date="1409611337000" expanded="true" signature="192:254" placeholder="..." />
-                <marker date="1409611337000" expanded="true" signature="52851:52939" placeholder="..." />
-                <marker date="1409611337000" expanded="true" signature="52851:52924" placeholder="..." />
-                <marker date="1409611337000" expanded="true" signature="52851:52911" placeholder="..." />
-                <marker date="1409611337000" expanded="true" signature="52851:52893" placeholder="..." />
+                <marker date="1409782384000" expanded="true" signature="59:55565" placeholder="..." />
+                <marker date="1409782384000" expanded="true" signature="98:191" placeholder="..." />
+                <marker date="1409782384000" expanded="true" signature="55491:55554" placeholder="..." />
+                <marker date="1409782384000" expanded="true" signature="55491:55539" placeholder="..." />
+                <marker date="1409782384000" expanded="true" signature="55491:55526" placeholder="..." />
+                <marker date="1409782384000" expanded="true" signature="55491:55508" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -80,11 +81,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="subscribe.css.scss" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="subscribe.css.scss" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/subscribe.css.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="105" max-vertical-offset="915">
-              <caret line="47" column="13" selection-start-line="47" selection-start-column="13" selection-end-line="47" selection-end-column="13" />
+            <state vertical-scroll-proportion="0.69818914" vertical-offset="433" max-vertical-offset="1020">
+              <caret line="52" column="1" selection-start-line="52" selection-start-column="1" selection-end-line="52" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -93,8 +94,8 @@
       <file leaf-file-name="index.html.slim" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/subscribe/index.html.slim">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1020">
-              <caret line="8" column="36" selection-start-line="8" selection-start-column="36" selection-end-line="8" selection-end-column="36" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="540" max-vertical-offset="1365">
+              <caret line="50" column="45" selection-start-line="50" selection-start-column="45" selection-end-line="50" selection-end-column="45" />
               <folding />
             </state>
           </provider>
@@ -120,10 +121,10 @@
         <option value="$PROJECT_DIR$/config/database.yml" />
         <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/application.css.scss" />
-        <option value="$PROJECT_DIR$/app/assets/stylesheets/subscribe.css.scss" />
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
-        <option value="$PROJECT_DIR$/app/views/subscribe/index.html.slim" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/subscribe.js.coffee" />
+        <option value="$PROJECT_DIR$/app/views/subscribe/index.html.slim" />
+        <option value="$PROJECT_DIR$/app/assets/stylesheets/subscribe.css.scss" />
       </list>
     </option>
   </component>
@@ -229,6 +230,46 @@
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="subscribe" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vaporize" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vaporize" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vaporize" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vaporize" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -289,6 +330,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="images" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -423,7 +468,11 @@
       <created>1409610519893</created>
       <updated>1409610519893</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="sync scroll speeds">
+      <created>1409611343921</created>
+      <updated>1409611343921</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -496,7 +545,9 @@
     <option name="LAST_COMMIT_MESSAGE" value="sync scroll speeds" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/application.css.scss">
@@ -823,30 +874,13 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="12525">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1409611337000" expanded="true" signature="59:52950" placeholder="..." />
-            <marker date="1409611337000" expanded="true" signature="98:254" placeholder="..." />
-            <marker date="1409611337000" expanded="true" signature="192:254" placeholder="..." />
-            <marker date="1409611337000" expanded="true" signature="52851:52939" placeholder="..." />
-            <marker date="1409611337000" expanded="true" signature="52851:52924" placeholder="..." />
-            <marker date="1409611337000" expanded="true" signature="52851:52911" placeholder="..." />
-            <marker date="1409611337000" expanded="true" signature="52851:52893" placeholder="..." />
+            <marker date="1409782384000" expanded="true" signature="59:55565" placeholder="..." />
+            <marker date="1409782384000" expanded="true" signature="98:191" placeholder="..." />
+            <marker date="1409782384000" expanded="true" signature="55491:55554" placeholder="..." />
+            <marker date="1409782384000" expanded="true" signature="55491:55539" placeholder="..." />
+            <marker date="1409782384000" expanded="true" signature="55491:55526" placeholder="..." />
+            <marker date="1409782384000" expanded="true" signature="55491:55508" placeholder="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/subscribe/index.html.slim">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1020">
-          <caret line="8" column="36" selection-start-line="8" selection-start-column="36" selection-end-line="8" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/subscribe.css.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="915">
-          <caret line="47" column="13" selection-start-line="47" selection-start-column="13" selection-end-line="47" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -862,8 +896,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/subscribe.js.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6639839" vertical-offset="45" max-vertical-offset="900">
-          <caret line="25" column="68" selection-start-line="25" selection-start-column="68" selection-end-line="25" selection-end-column="68" />
+        <state vertical-scroll-proportion="21.115385" vertical-offset="684" max-vertical-offset="1155">
+          <caret line="9" column="30" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/subscribe/index.html.slim">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="540" max-vertical-offset="1365">
+          <caret line="50" column="45" selection-start-line="50" selection-start-column="45" selection-end-line="50" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/subscribe.css.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.69818914" vertical-offset="433" max-vertical-offset="1020">
+          <caret line="52" column="1" selection-start-line="52" selection-start-column="1" selection-end-line="52" selection-end-column="1" />
           <folding />
         </state>
       </provider>

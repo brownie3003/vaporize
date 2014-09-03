@@ -1,46 +1,69 @@
 form#subscription
-    .row#question-1
+    .row#eCigarette
         .container
-            .question
-                h2 How many cigarettes do you smoke a day?
-                select.form-control.subscription data-question=1
-                    option value="10" less than 10
-                    option value="14" 10 - 20
-                    option value="18" more than 20
-            .next-question
-                span.glyphicon.glyphicon-circle-arrow-down
-    .row#question-2
-        .container
-            .prev-question
-                span.glyphicon.glyphicon-circle-arrow-up
-            .question
-                h2 What flavor of cigarette do you smoke?
-                .radio
-                    label
-                        input type="radio" name="flavor" id="optionsRadios1" value="tobacco" data-question=2
-                        | Tobacco
-                .radio
-                    label
-                        input type="radio" name="flavor" id="optionsRadios2" value="menthol" data-question=2
-                        | Menthol
-            .next-question
-                span.glyphicon.glyphicon-circle-arrow-down
-    .row#question-3
-        .container
-            .prev-question
-                span.glyphicon.glyphicon-circle-arrow-up
             .question
                 h2 Do you require an e-cigarette?
                 .radio
                     label
-                        input type="radio" name="cigarette" id="optionsRadios1" value="true" data-question=3
+                        input type="radio" name="e-cigarette" id="optionsRadios1" value="true" data-question="e-cigarette"
                         | Yes
                 .radio
                     label
-                        input type="radio" name="cigarette" id="optionsRadios2" value="false" data-question=3
+                        input type="radio" name="e-cigarette" id="optionsRadios2" value="false" data-question="e-cigarette"
                         | No I already have my own e-cigarette. I just require e-liquid.
             .next-question
                 span.glyphicon.glyphicon-circle-arrow-down
+    .row#eLiquid
+        .container
+            .prev-question
+                span.glyphicon.glyphicon-circle-arrow-up
+            .question#dailyCigarettes
+                h2 How many cigarettes do you smoke a day?
+                select.form-control.subscription data-question="subscription level"
+                    option default="" Select an answer
+                    option value="10" less than 10
+                    option value="14" 10 - 20
+                    option value="18" more than 20
+            .question#subscriptionLevel
+                h2 Pick you subscription level.
+                select.form-control.subscription data-question="subscription level"
+                    option value="9" 3 x 10ml
+                    option value="12" 4 x 10ml
+                    option value="15" 5 x 10ml
+            .next-question
+                span.glyphicon.glyphicon-circle-arrow-down
+    .row#flavours
+        .container
+            .prev-question
+                span.glyphicon.glyphicon-circle-arrow-up
+            .question#boxContent
+                h2 Some fancypants box picking shit
+
+                .col-xs-4.e-liquid-box
+                    = image_tag("eliquid.svg")
+                    select.form-control
+                        option default="" Select a flavour
+                        option value="tabacco" Tabacco
+                        option value="menthol" Menthol
+                        option value="Apple" Apple
+                        option value="xyz" Some other shit
+                .col-xs-4.e-liquid-box
+                    = image_tag("eliquid.svg")
+                    select.form-control
+                        option default="" Select a flavour
+                        option value="tabacco" Tabacco
+                        option value="menthol" Menthol
+                        option value="Apple" Apple
+                        option value="xyz" Some other shit
+                .col-xs-4.e-liquid-box
+                    = image_tag("eliquid.svg")
+                    select.form-control
+                        option default="" Select a flavour
+                        option value="tabacco" Tabacco
+                        option value="menthol" Menthol
+                        option value="Apple" Apple
+                        option value="xyz" Some other shit
+                button#showMeTheMoney This button will light up when they've picked their shit
     .row.hidden#offer
         .container
             .prev-question
