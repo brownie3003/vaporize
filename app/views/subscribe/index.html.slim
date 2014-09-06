@@ -27,6 +27,7 @@ form#subscription
             .question#subscriptionLevel
                 h2 Pick you subscription level.
                 select.form-control.subscription data-question="subscription level"
+                    option default="" Select an answer
                     option value="12" 3 x 10ml
                     option value="15" 4 x 10ml
                     option value="18" 5 x 10ml
@@ -46,18 +47,17 @@ form#subscription
         .container
             a.prev-question
                 span.glyphicon.glyphicon-circle-arrow-up
-            .subscription
-                .h1 Sign Up
+            .subscription-offer
                 .col-md-6.one-month
-                    h4 Monthly
-                    h2.price
-                    p
-                        | We will deliver exactly the right amount of e-liquid you will need each month. Pay on a month by
-                        |  month basis, cancel at any time.
-                    p.cigarette
-
+                    h2 Monthly
+                    h3.price
+                    h3.cigarette-offer
+                    small.pricing-explanation
                 .col-md-6.three-months
-                    h4 3 Months
-                    h2.price
-                    p.discount
-
+                    h2 3 Months
+                    h3.price
+                    h3.cigarette-offer
+                    small.pricing-explanation
+                / TODO something fucking up with HTML here
+                h3 Delivery is free.
+                h3 You can cancel your subscription at any time.

@@ -39,8 +39,11 @@
                 font-size: xx-large;
             }
         }
-        .subscription {
+        .subscription-offer {
             text-align: center;
+            #ourPromise {
+                padding: 30px;
+            }
         }
     }
 }
@@ -58,6 +61,9 @@
 #boxContent {
     img {
         padding: 10px;
+    }
+    h2 {
+        padding-top: 20px;
     }
 }
 

@@ -3,10 +3,10 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $ ->
-    # User object
+    # Declare user object
     user =
         subscription:
-            value: undefined,
+            price: undefined,
             bottles: undefined,
             flavours:
                 1: undefined
@@ -22,20 +22,43 @@ $ ->
         (parseInt(price) * 3 * 0.9).toFixed(2)
 
     showSubscription = ->
-        threeMonthPrice = parseInt(user.subscription) * 3
+        discountPrice = calculateDiscountPrice()
+        showOneMonth()
+        showThreeMonth(discountPrice)
         $("#offer").removeClass("hidden")
         $('html, body').animate({
             scrollTop: $("#offer").offset().top
         }, 1000);
-        $(".one-month").find(".price").html("£" + user.subscription + "/month")
-        $(".three-months").find(".price").html("£" + threeMonthPrice + " upfront payment" )
-        if user.cigarette == "true"
-            $(".one-month").find(".price").append(" + £42 for the e-cigarette kit")
-            $(".discount").html("If you sign up for 3 months in advance, the e-cigarette kit will be free")
+
+    calculateDiscountPrice = ->
+        if user.cigarette == true
+            return (user.subscription.price)*3
         else
-            discountedPrice = discountPrice(user.subscription)
-            $(".three-months").find(".price").html("£" + discountedPrice + " upfront payment")
-            $(".discount").html("Get 10% off if you sign up for 3 months")
+            return ((user.subscription.price) * 3 * 0.8).toFixed(2)
+
+    showOneMonth = ->
+        $(".one-month").find(".price").html("£" + user.subscription.price + "/month")
+        if user.cigarette == true
+            $(".one-month").find(".cigarette-offer").html("£42 for the e-cigarette kit")
+            $(".one-month").find(".pricing-explanation").html("Your first payment will be £" + (user.subscription.price + 42) +
+                " to pay for the e-cigarette kit. After this you will pay £" + user.subscription.price + " per month.");
+        else
+            $(".one-month").find(".pricing-explanation").html("You will simply pay £" + user.subscription.price + " per month
+                for your e-liquid.")
+
+    showThreeMonth = (discountPrice) ->
+        if user.cigarette == true
+            $(".three-months").find(".price").html("£" + (user.subscription.price)*3)
+            $(".three-months").find(".cigarette-offer").html("£20 for the e-cigarette kit")
+            $(".three-months").find(".pricing-explanation").html("Your first payment will be £" +
+                    ((user.subscription.price)*3 + 20) + " which includes your first 3 months subscription plus £20 for your
+                e-cigarette kit. After 3 months this you will pay £" +
+                user.subscription.price + " per month.");
+        else
+            $(".three-months").find(".price").html("£" + discountPrice)
+            $(".three-months").find(".pricing-explanation").html("Your first payment will be £" + discountPrice +
+                ". We've given you 20% off your normal subscription price of £" + user.subscription.price + ". After 3
+                months you will be charged £" + user.subscription.price + " per month." )
 
     moveToNextQuestion = (next) ->
         $('html, body').animate({
@@ -45,18 +68,20 @@ $ ->
     showNavigationArrows = ->
         $(".prev-question, .next-question").delay(1000).fadeIn(500)
 
-    # Hide stuff on load
+    ### Hide stuff on load ###
     $(".prev-question, .next-question, #subscriptionLevel, .e-liquid-box-4, .e-liquid-box-5").hide()
     $("#showMeTheMoney").attr("disabled", true)
 
     ### Listeners ###
+
+    # When anything changes on the form.
     $('#subscription').on 'change', (e) ->
         # Do you have an e-cigarette?
         if $(e.target).data('question') == 'e-cigarette'
-            cigaretteValue = $('input:radio[name = "e-cigarette"]:checked').val()
+            cigaretteprice = $('input:radio[name = "e-cigarette"]:checked').val()
 
             # Assign cigarette choice to user object
-            if cigaretteValue == "true"
+            if cigaretteprice == "true"
                 user.cigarette = true
                 $("#subscriptionLevel").hide()
                 $("#dailyCigarettes").show()
@@ -69,15 +94,16 @@ $ ->
 
         # How much e-liquid do you want?
         if $(e.target).data('question') == 'subscription level'
-            user.subscription.value =  parseInt($('.subscription').val())
-            # TODO empty the flavours object to avoid allowing them to submit a strange set of flavours
+            user.subscription.price =  parseInt($(e.target).val())
+            # empty the flavours object to avoid allowing user to submit a strange set of flavours
+            user.subscription.flavours = 1: undefined
             $("#showMeTheMoney").attr("disabled", true)
-            # Get bottle number from subscription value. Horrible way to do it, but here's the mapping
-            if user.subscription.value == 12
+            # Get bottle number from subscription price. Horrible way to do it, but here's the mapping
+            if user.subscription.price == 12
                 user.subscription.bottles = 3
                 $(".e-liquid-box-4, .e-liquid-box-5").hide()
                 $(".e-liquid-box-3").show()
-            else if user.subscription.value == 15
+            else if user.subscription.price == 15
                 user.subscription.bottles = 4
                 $(".e-liquid-box-3, .e-liquid-box-5").hide()
                 $(".e-liquid-box-4").show()
@@ -92,8 +118,6 @@ $ ->
             user.subscription.flavours[pickNumber] = $(e.target).val()
             if Object.keys(user.subscription.flavours).length == user.subscription.bottles && user.subscription.flavours[1] != undefined
                 $("#showMeTheMoney").attr("disabled", false)
-
-
 
         showNavigationArrows()
 
