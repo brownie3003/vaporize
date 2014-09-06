@@ -3,14 +3,16 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $ ->
-    user = {}
+    # User object
+    user =
+        subscription:
+            value: undefined,
+            bottles: undefined,
+            flavours:
+                1: undefined
+        cigarette: true
 
-    # Hide these until user tells us whether they need an e-cigarette or not
-    $("#subscriptionLevel").hide()
-    $("#dailyCigarettes").hide()
-
-    # Hide navigation arrows at the start
-    $(".prev-question, .next-question").hide()
+    ### Functions ###
 
     # Return true if all questions have been answered.
     signupComplete = ->
@@ -43,11 +45,17 @@ $ ->
     showNavigationArrows = ->
         $(".prev-question, .next-question").delay(1000).fadeIn(500)
 
+    # Hide stuff on load
+    $(".prev-question, .next-question, #subscriptionLevel, .e-liquid-box-4, .e-liquid-box-5").hide()
+    $("#showMeTheMoney").attr("disabled", true)
+
+    ### Listeners ###
     $('#subscription').on 'change', (e) ->
+        # Do you have an e-cigarette?
         if $(e.target).data('question') == 'e-cigarette'
             cigaretteValue = $('input:radio[name = "e-cigarette"]:checked').val()
 
-            #Assign cigarette choice to user object
+            # Assign cigarette choice to user object
             if cigaretteValue == "true"
                 user.cigarette = true
                 $("#subscriptionLevel").hide()
@@ -59,11 +67,54 @@ $ ->
 
             moveToNextQuestion('#eLiquid')
 
+        # How much e-liquid do you want?
         if $(e.target).data('question') == 'subscription level'
-            user.subscription = $('.subscription').val()
+            user.subscription.value =  parseInt($('.subscription').val())
+            # TODO empty the flavours object to avoid allowing them to submit a strange set of flavours
+            $("#showMeTheMoney").attr("disabled", true)
+            # Get bottle number from subscription value. Horrible way to do it, but here's the mapping
+            if user.subscription.value == 12
+                user.subscription.bottles = 3
+                $(".e-liquid-box-4, .e-liquid-box-5").hide()
+                $(".e-liquid-box-3").show()
+            else if user.subscription.value == 15
+                user.subscription.bottles = 4
+                $(".e-liquid-box-3, .e-liquid-box-5").hide()
+                $(".e-liquid-box-4").show()
+            else
+                user.subscription.bottles = 5
+                $(".e-liquid-box-3, .e-liquid-box-4").hide()
+                $(".e-liquid-box-5").show()
             moveToNextQuestion('#flavours')
 
+        if $(e.target).data('question') == "flavour"
+            pickNumber = $(e.target).attr("id").split("-")[1]
+            user.subscription.flavours[pickNumber] = $(e.target).val()
+            if Object.keys(user.subscription.flavours).length == user.subscription.bottles && user.subscription.flavours[1] != undefined
+                $("#showMeTheMoney").attr("disabled", false)
+
+
+
         showNavigationArrows()
+
+    $(".prev-question").on 'click', (e) ->
+        e.preventDefault()
+        currentQuestion = $(e.target).parents(".row").attr("id")
+
+        if currentQuestion == "eLiquid"
+            moveToNextQuestion("#eCigarette")
+        else if currentQuestion == "flavours"
+            moveToNextQuestion("#eLiquid")
+        else if currentQuestion == "offer"
+            moveToNextQuestion("#flavours")
+
+    $(".next-question").on 'click', (e) ->
+        currentQuestion = $(e.target).parents(".row").attr("id")
+
+        if currentQuestion == "eCigarette"
+            moveToNextQuestion("#eLiquid")
+        else if currentQuestion == "eLiquid"
+            moveToNextQuestion("#flavours")
 
     $("#showMeTheMoney").on 'click', (e) ->
         e.preventDefault()
