@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0b265380-4a4a-4e54-85c1-1c7290cf9635" name="Default" comment="Add icons for bottles">
+    <list default="true" id="0b265380-4a4a-4e54-85c1-1c7290cf9635" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/subscribe/index.html.slim" afterPath="$PROJECT_DIR$/app/views/subscribe/index.html.slim" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/subscribe.css.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/subscribe.css.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/subscribe.js.coffee" afterPath="$PROJECT_DIR$/app/assets/javascripts/subscribe.js.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -44,8 +43,8 @@
       <file leaf-file-name="subscribe.js.coffee" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/subscribe.js.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.7272725" vertical-offset="425" max-vertical-offset="2280">
-              <caret line="53" column="43" selection-start-line="53" selection-start-column="43" selection-end-line="53" selection-end-column="43" />
+            <state vertical-scroll-proportion="19.236364" vertical-offset="1688" max-vertical-offset="2280">
+              <caret line="42" column="124" selection-start-line="42" selection-start-column="124" selection-end-line="42" selection-end-column="124" />
               <folding />
             </state>
           </provider>
@@ -54,8 +53,8 @@
       <file leaf-file-name="index.html.slim" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/subscribe/index.html.slim">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.86092716" vertical-offset="250" max-vertical-offset="1020">
-              <caret line="60" column="58" selection-start-line="60" selection-start-column="58" selection-end-line="60" selection-end-column="58" />
+            <state vertical-scroll-proportion="0.57746476" vertical-offset="523" max-vertical-offset="1050">
+              <caret line="54" column="21" selection-start-line="54" selection-start-column="21" selection-end-line="54" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -84,7 +83,7 @@
       <file leaf-file-name="subscribe.css.scss" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/subscribe.css.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="355" max-vertical-offset="1155">
+            <state vertical-scroll-proportion="0.0" vertical-offset="658" max-vertical-offset="1155">
               <caret line="44" column="30" selection-start-line="44" selection-start-column="30" selection-end-line="44" selection-end-column="30" />
               <folding />
             </state>
@@ -545,7 +544,11 @@
       <created>1410002757138</created>
       <updated>1410002757138</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Logic for Pricing">
+      <created>1410016114745</created>
+      <updated>1410016114745</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -553,7 +556,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32950193" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32950193" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32950193" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32950193" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -617,7 +620,8 @@
     <MESSAGE value="sync scroll speeds" />
     <MESSAGE value="Add icons for bottles" />
     <MESSAGE value="Finish picking flavours except for edge cases (e.g. change of subscription level)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finish picking flavours except for edge cases (e.g. change of subscription level)" />
+    <MESSAGE value="Logic for Pricing" />
+    <option name="LAST_COMMIT_MESSAGE" value="Logic for Pricing" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -947,12 +951,12 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="12525">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1410016095000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1410016095000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1410016095000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1410016095000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1410016095000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1410016095000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1410018111000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1410018111000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1410018111000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1410018111000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1410018111000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1410018111000" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -981,14 +985,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/subscribe.css.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="355" max-vertical-offset="1155">
-          <caret line="44" column="30" selection-start-line="44" selection-start-column="30" selection-end-line="44" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/partials/_eLiquidBox.slim">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="360">
@@ -997,18 +993,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/subscribe.css.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="658" max-vertical-offset="1155">
+          <caret line="44" column="30" selection-start-line="44" selection-start-column="30" selection-end-line="44" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/subscribe.js.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.7272725" vertical-offset="425" max-vertical-offset="2280">
-          <caret line="53" column="43" selection-start-line="53" selection-start-column="43" selection-end-line="53" selection-end-column="43" />
+        <state vertical-scroll-proportion="19.236364" vertical-offset="1688" max-vertical-offset="2280">
+          <caret line="42" column="124" selection-start-line="42" selection-start-column="124" selection-end-line="42" selection-end-column="124" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/subscribe/index.html.slim">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.86092716" vertical-offset="250" max-vertical-offset="1020">
-          <caret line="60" column="58" selection-start-line="60" selection-start-column="58" selection-end-line="60" selection-end-column="58" />
+        <state vertical-scroll-proportion="0.57746476" vertical-offset="523" max-vertical-offset="1050">
+          <caret line="54" column="21" selection-start-line="54" selection-start-column="21" selection-end-line="54" selection-end-column="21" />
           <folding />
         </state>
       </provider>

@@ -39,9 +39,9 @@ $ ->
     showOneMonth = ->
         $(".one-month").find(".price").html("£" + user.subscription.price + "/month")
         if user.cigarette == true
-            $(".one-month").find(".cigarette-offer").html("£42 for the e-cigarette kit")
-            $(".one-month").find(".pricing-explanation").html("Your first payment will be £" + (user.subscription.price + 42) +
-                " to pay for the e-cigarette kit. After this you will pay £" + user.subscription.price + " per month.");
+            $(".one-month").find(".cigarette-offer").html("£45 for the e-cigarette kit")
+            $(".one-month").find(".pricing-explanation").html("Your first payment will be £" + (user.subscription.price + 45) +
+                " to pay for your e-cigarette kit. After this you will pay £" + user.subscription.price + " per month.");
         else
             $(".one-month").find(".pricing-explanation").html("You will simply pay £" + user.subscription.price + " per month
                 for your e-liquid.")
