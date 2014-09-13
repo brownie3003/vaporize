@@ -2,7 +2,7 @@
 @import "bootstrap";
 
 @import "homepage";
-@import "subscribe";
+@import "subscriptions";
 
 .jumbotron {
     height: 100%;
@@ -29,4 +29,9 @@
 
 .hidden {
     display: none;
+}
+
+.debug_dump {
+  position: fixed;
+  bottom: 0;
 }

@@ -39,9 +39,10 @@ $ ->
     showOneMonth = ->
         $(".one-month").find(".price").html("£" + user.subscription.price + "/month")
         if user.cigarette == true
-            $(".one-month").find(".cigarette-offer").html("£45 for the e-cigarette kit")
-            $(".one-month").find(".pricing-explanation").html("Your first payment will be £" + (user.subscription.price + 45) +
-                " to pay for your e-cigarette kit. After this you will pay £" + user.subscription.price + " per month.");
+            $(".one-month").find(".cigarette-offer").html("£25 for the e-cigarette kit")
+            $(".one-month").find(".pricing-explanation").html("Your first payment will be £" +
+                (user.subscription.price + 25) + " to pay for your e-cigarette kit. After this you will pay £" +
+                user.subscription.price + " per month.");
         else
             $(".one-month").find(".pricing-explanation").html("You will simply pay £" + user.subscription.price + " per month
                 for your e-liquid.")
@@ -49,11 +50,10 @@ $ ->
     showThreeMonth = (discountPrice) ->
         if user.cigarette == true
             $(".three-months").find(".price").html("£" + (user.subscription.price)*3)
-            $(".three-months").find(".cigarette-offer").html("£20 for the e-cigarette kit")
+            $(".three-months").find(".cigarette-offer").html("Your e-cigarette will be free.")
             $(".three-months").find(".pricing-explanation").html("Your first payment will be £" +
-                    ((user.subscription.price)*3 + 20) + " which includes your first 3 months subscription plus £20 for your
-                e-cigarette kit. After 3 months this you will pay £" +
-                user.subscription.price + " per month.");
+                (user.subscription.price)*3 + " which is your first 3 months subscription. After 3 months this you
+                will pay £" + user.subscription.price + " per month.");
         else
             $(".three-months").find(".price").html("£" + discountPrice)
             $(".three-months").find(".pricing-explanation").html("Your first payment will be £" + discountPrice +
