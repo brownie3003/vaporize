@@ -7,8 +7,10 @@ class SubscriptionsController < ApplicationController
 		@subscription = Subscription.new(subscription_params)
 		if @subscription.save
 			puts "YAY"
+			# Redirect to show
 		else
 			puts "NAY"
+			render 'new'
 		end
 	end
 

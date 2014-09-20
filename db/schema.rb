@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140918101456) do
+ActiveRecord::Schema.define(version: 20140920203049) do
 
   create_table "addresses", force: true do |t|
     t.string   "house_number"
@@ -22,7 +22,10 @@ ActiveRecord::Schema.define(version: 20140918101456) do
     t.string   "postcode"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "subscription_id"
   end
+
+  add_index "addresses", ["subscription_id"], name: "index_addresses_on_subscription_id"
 
   create_table "eliquids", force: true do |t|
     t.string   "name"
@@ -57,7 +60,6 @@ ActiveRecord::Schema.define(version: 20140918101456) do
     t.string   "last_name"
     t.boolean  "initial_ecigarette"
     t.string   "stripe_token"
-    t.integer  "address_id"
     t.integer  "subscription_plan_id"
     t.datetime "created_at"
     t.datetime "updated_at"
