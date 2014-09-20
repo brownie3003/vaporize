@@ -1,0 +1,26 @@
+.container.vaporize-container
+	form role="form"
+		= form_for @subscription, url: {action: "create"} do |f|
+			.form-group
+				= f.text_field :first_name, placeholder: "First name"
+			.form-group
+				= f.text_field :last_name, placeholder: "Last name"
+			.form-group
+				= f.email_field :email, placeholder: "Email address"
+
+			= f.fields_for :address, Address.new do |builder|
+				h3 Adress
+				.form-group
+					= builder.text_field :house_number, placeholder: "House/Flat no."
+				.form-group
+					= builder.text_field :street, placeholder: "Street"
+				.form-group
+					= builder.text_field :second_line, placeholder: "Second line"
+				.form-group
+					= builder.text_field :city, placeholder: "City"
+				.form-group
+					= builder.text_field :county, placeholder: "County"
+				.form-group
+					= builder.text_field :postcode, placeholder: "Postcode"
+
+			= f.submit

@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
-  get 'subscribe', to: 'subscribe#index' 
+  get 'subscriptions/new'
+
+  get 'subscriptions/create'
+
+  get 'subscriptions/edit'
+
+  get 'subscribe', to: 'subscribe#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

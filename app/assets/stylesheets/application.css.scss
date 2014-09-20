@@ -4,6 +4,10 @@
 @import "homepage";
 @import "subscribe";
 
+.vaporize-container {
+    padding-top: 70px;
+}
+
 .jumbotron {
     height: 100%;
     width: 100%;
@@ -29,4 +33,11 @@
 
 .hidden {
     display: none;
+}
+
+.debug_dump {
+    position: fixed;
+    margin-left: 30%;
+    width: 40%;
+    bottom: 0;
 }
