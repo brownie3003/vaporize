@@ -1,40 +1,46 @@
 .container.vaporize-container
-	= form_for @subscription, url: {action: "create"}, html: {role: "form"} do |f|
+	= form_for @subscription, url: {action: "create"}, html: {role: "form"} do |subscription_form|
 		.form-group
-			= f.text_field :first_name, placeholder: "First name"
+			= subscription_form.text_field :first_name, placeholder: "First name"
 		.form-group
-			= f.text_field :last_name, placeholder: "Last name"
+			= subscription_form.text_field :last_name, placeholder: "Last name"
 		.form-group
-			= f.email_field :email, placeholder: "Email address"
+			= subscription_form.email_field :email, placeholder: "Email address"
 
-		= f.fields_for :address, Address.new do |builder|
+		= subscription_form.fields_for :address, Address.new do |address_form|
 			h3 Address
 			.form-group
-				= builder.text_field :house_number, placeholder: "House/Flat no."
+				= address_form.text_field :house_number, placeholder: "House/Flat no."
 			.form-group
-				= builder.text_field :street, placeholder: "Street"
+				= address_form.text_field :street, placeholder: "Street"
 			.form-group
-				= builder.text_field :second_line, placeholder: "Second line"
+				= address_form.text_field :second_line, placeholder: "Second line"
 			.form-group
-				= builder.text_field :city, placeholder: "City"
+				= address_form.text_field :city, placeholder: "City"
 			.form-group
-				= builder.text_field :county, placeholder: "County"
+				= address_form.text_field :county, placeholder: "County"
 			.form-group
-				= builder.text_field :postcode, placeholder: "Postcode"
+				= address_form.text_field :postcode, placeholder: "Postcode"
 
 		h3 Subscription Plan Summary
 
 		.form-group
 			- subscription_plans_array = SubscriptionPlan.all.map{|plan| [plan.name, plan.id]}
-			= f.select :subscription_plan_id, options_for_select(subscription_plans_array)
+			= subscription_form.select :subscription_plan_id, options_for_select(subscription_plans_array)
+
+		= subscription_form.fields_for :eliquid do |eliquid_form|
+			.form-group
+				= eliquid_form.hidden_field :eliquid_id, value: 1
+				= eliquid_form.hidden_field :eliquid_id, value: 2
+				= eliquid_form.hidden_field :eliquid_id, value: 1
 
 		h3 Selected Dispatch Day
 		p Which day of the month would you like us to send your subscription.
 
 		.form-group
-			= f.select :shipping_day, options_for_select(1..31)
+			= subscription_form.select :shipping_day, options_for_select(1..31)
 
 		h3 Payment Details
 		p Stripey Stripe
 
-		= f.submit
+		= subscription_form.submit

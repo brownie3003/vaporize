@@ -32,6 +32,10 @@ class SubscriptionsController < ApplicationController
 					:city,
 					:county,
 					:postcode
+				],
+				subscription_choice_attributes: [
+					:subscription_id,
+					:eliquid_id
 				]
 			)
 		end
