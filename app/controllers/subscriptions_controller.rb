@@ -19,8 +19,20 @@ class SubscriptionsController < ApplicationController
 
 	private
 		def subscription_params
-			params.require(:subscription).permit(:first_name, :last_name,
-				:email, address_attributes: [:house_number, :street,
-					:second_line, :city, :county, :postcode])
+			params.require(:subscription).permit(
+				:first_name,
+				:last_name,
+				:email,
+				:subscription_plan_id,
+				:shipping_day,
+				address_attributes: [
+					:house_number,
+					:street,
+					:second_line,
+					:city,
+					:county,
+					:postcode
+				]
+			)
 		end
 end

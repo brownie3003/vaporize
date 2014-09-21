@@ -8,7 +8,7 @@
 			= f.email_field :email, placeholder: "Email address"
 
 		= f.fields_for :address, Address.new do |builder|
-			h3 Adress
+			h3 Address
 			.form-group
 				= builder.text_field :house_number, placeholder: "House/Flat no."
 			.form-group
@@ -21,5 +21,20 @@
 				= builder.text_field :county, placeholder: "County"
 			.form-group
 				= builder.text_field :postcode, placeholder: "Postcode"
+
+		h3 Subscription Plan Summary
+
+		.form-group
+			- subscription_plans_array = SubscriptionPlan.all.map{|plan| [plan.name, plan.id]}
+			= f.select :subscription_plan_id, options_for_select(subscription_plans_array)
+
+		h3 Selected Dispatch Day
+		p Which day of the month would you like us to send your subscription.
+
+		.form-group
+			= f.select :shipping_day, options_for_select(1..31)
+
+		h3 Payment Details
+		p Stripey Stripe
 
 		= f.submit
