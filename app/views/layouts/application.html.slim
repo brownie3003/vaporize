@@ -3,7 +3,6 @@ html
         head
                 title Vaporize
                 = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-                = javascript_include_tag 'application', 'data-turbolinks-track' => true
                 = csrf_meta_tags
         body
             header
@@ -26,3 +25,7 @@ html
             = yield
 
             = debug(params)
+
+            script src='https://js.stripe.com/v1/'
+            = javascript_include_tag 'application', 'data-turbolinks-track' => true
+

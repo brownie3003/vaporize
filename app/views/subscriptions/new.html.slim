@@ -30,5 +30,13 @@
 
 		h3 Payment Details
 		p Stripey Stripe
+        .form-group
+            input type='text' placeholder='Card Number' id='stripe-card-number'
+            input type='text' placeholder='CVC' id='stripe-cvc'
+            input type='text' placeholder='Month' id='stripe-exp-month'
+            input type='text' placeholder='Year' id='stripe-exp-year'
+            input type='hidden' name='stripe_token' id='stripe-token'
 
 		= subscription_form.submit
+
+script src='https://js.stripe.com/v1/'

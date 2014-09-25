@@ -50,3 +50,6 @@ gem 'bootstrap-sass', '3.2.0.1'
 gem 'autoprefixer-rails', '2.2.0.20140727'
 
 gem 'jquery-turbolinks', '2.0.2'
+
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+
