@@ -22,18 +22,6 @@
 			.form-group
 				= address_form.text_field :postcode, placeholder: "Postcode"
 
-		h3 Subscription Plan Summary
-
-		.form-group
-			- subscription_plans_array = SubscriptionPlan.all.map{|plan| [plan.name, plan.id]}
-			= subscription_form.select :subscription_plan_id, options_for_select(subscription_plans_array)
-
-		= subscription_form.fields_for :eliquid do |eliquid_form|
-			.form-group
-				= eliquid_form.hidden_field :eliquid_id, value: 1
-				= eliquid_form.hidden_field :eliquid_id, value: 2
-				= eliquid_form.hidden_field :eliquid_id, value: 1
-
 		h3 Selected Dispatch Day
 		p Which day of the month would you like us to send your subscription.
 

@@ -1,13 +1,18 @@
 class SubscriptionsController < ApplicationController
 	def new
 		@subscription = Subscription.new
+        session[:eliquids] = params[:eliquids]
+        session[:subscription_plan] = params[:subscription_plan]
 	end
 
 	def create
 		@subscription = Subscription.new(subscription_params)
-		if @subscription.save
-			puts "YAY"
-			# Redirect to show
+        session[:eliquids].each do |id|
+            @subscription.subscription_choices.build(eliquid: Eliquid.find(id))
+        end
+	    @subscription.subscription_plan = SubscriptionPlan.find(session[:subscription_plan])
+        if @subscription.save
+            redirect @subscription
 		else
 			puts "NAY"
 			render 'new'
@@ -32,10 +37,6 @@ class SubscriptionsController < ApplicationController
 					:city,
 					:county,
 					:postcode
-				],
-				subscription_choice_attributes: [
-					:subscription_id,
-					:eliquid_id
 				]
 			)
 		end
