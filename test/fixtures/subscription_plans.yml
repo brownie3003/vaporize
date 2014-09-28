@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  eliquid_count: 1
+  interval_cost: 1
+  interval: MyString
+  initial_cost: 1
+  initial_interval_count: 1
+  ecigarette_cost: 1
+
+two:
+  name: MyString
+  eliquid_count: 1
+  interval_cost: 1
+  interval: MyString
+  initial_cost: 1
+  initial_interval_count: 1
+  ecigarette_cost: 1

@@ -16,4 +16,4 @@
 /tmp
 
 # Ignore .idea
-/.idea
+/.idea/*

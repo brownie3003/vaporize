@@ -1,7 +1,11 @@
 source 'https://rubygems.org'
+<<<<<<< HEAD
 
 ruby "2.1.1"
 
+=======
+ruby '2.1.2'
+>>>>>>> create-subscription
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.4'
@@ -56,4 +60,4 @@ gem 'autoprefixer-rails', '2.2.0.20140727'
 
 gem 'jquery-turbolinks', '2.0.2'
 
-gem 'devise'
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'

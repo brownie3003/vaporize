@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  shipping_day: 1
+  email: MyString
+  first_name: MyString
+  last_name: MyString
+  initial_ecigarette: false
+  stripe_token: MyString
+  address_id: 1
+  subscription_plan_id: 1
+
+two:
+  shipping_day: 1
+  email: MyString
+  first_name: MyString
+  last_name: MyString
+  initial_ecigarette: false
+  stripe_token: MyString
+  address_id: 1
+  subscription_plan_id: 1
