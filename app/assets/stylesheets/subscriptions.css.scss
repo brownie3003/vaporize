@@ -39,12 +39,6 @@
                 font-size: xx-large;
             }
         }
-        .subscription-offer {
-            text-align: center;
-            #ourPromise {
-                padding: 30px;
-            }
-        }
     }
 }
 
@@ -56,6 +50,7 @@
 }
 #offer {
     top: 300%;
+    text-align: center;
 }
 
 #boxContent {
