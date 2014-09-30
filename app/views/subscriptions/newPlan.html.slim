@@ -1,0 +1,65 @@
+form#subscription
+    .row#eCigarette
+        .container
+            .question
+                h2 Do you require an e-cigarette?
+                .radio
+                    label
+                        input type="radio" name="e-cigarette" id="optionsRadios1" value="true" data-question="e-cigarette"
+                        | Yes
+                .radio
+                    label
+                        input type="radio" name="e-cigarette" id="optionsRadios2" value="false" data-question="e-cigarette"
+                        | No I already have my own e-cigarette. I just require e-liquid.
+            a.next-question
+                span.glyphicon.glyphicon-circle-arrow-down
+    .row#eLiquid
+        .container
+            a.prev-question
+                span.glyphicon.glyphicon-circle-arrow-up
+            .question#dailyCigarettes
+                h2 How many cigarettes do you smoke a day?
+                select.form-control.subscription data-question="subscription level"
+                    option default="" Select an answer
+                    option value="12" less than 10
+                    option value="15" 10 - 20
+                    option value="18" more than 20
+            .question#subscriptionLevel
+                h2 Pick you subscription level.
+                select.form-control.subscription data-question="subscription level"
+                    option default="" Select an answer
+                    option value="12" 3 x 10ml
+                    option value="15" 4 x 10ml
+                    option value="18" 5 x 10ml
+            a.next-question
+                span.glyphicon.glyphicon-circle-arrow-down
+    .row#flavours
+        .container
+            a.prev-question
+                span.glyphicon.glyphicon-circle-arrow-up
+            .question#boxContent
+                h2 Select your flavours
+
+                = render "partials/eLiquidBox"
+
+                button#showMeTheMoney This button will light up when they've picked their shit
+    .row.hidden#offer
+        .container
+            a.prev-question
+                span.glyphicon.glyphicon-circle-arrow-up
+            .subscription-offer
+                .col-xs-6.one-month
+                    h2 Monthly
+                    h3.price
+                    h3.cigarette-offer
+                    p.pricing-explanation
+                    button Pay
+                .col-xs-6.three-months
+                    h2 3 Months upfront
+                    h3.price
+                    h3.cigarette-offer
+                    p.pricing-explanation
+                    button Pay
+                / TODO something fucking up with HTML here
+                h3 Delivery is free.
+                h3 You can cancel your subscription at any time.

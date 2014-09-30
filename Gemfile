@@ -1,11 +1,5 @@
 source 'https://rubygems.org'
-<<<<<<< HEAD
-
-ruby "2.1.1"
-
-=======
 ruby '2.1.2'
->>>>>>> create-subscription
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.4'

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
 	get 'subscriptions/edit'
 
-	get 'subscribe', to: 'subscribe#index'
+	get 'subscribe', to: 'subscriptions#newPlan'
 
 	# The priority is based upon order of creation: first created -> highest priority.
 	# See how all your routes lay out with "rake routes".
@@ -62,5 +62,4 @@ Rails.application.routes.draw do
 	#	 # (app/controllers/admin/products_controller.rb)
 	#	 resources :products
 	#   end
->>>>>>> create-subscription
 end

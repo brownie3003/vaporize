@@ -21,7 +21,11 @@ class SubscriptionsController < ApplicationController
 	end
 
 	def edit
-	end
+    end
+
+    def newPlan
+
+    end
 
 	private
 		def subscription_params
