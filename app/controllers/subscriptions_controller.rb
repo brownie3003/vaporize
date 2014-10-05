@@ -2,16 +2,17 @@ class SubscriptionsController < ApplicationController
 
 	def new
 		@subscription = Subscription.new
-        session[:eliquids] = params[:eliquids]
-        session[:subscription_plan] = params[:subscription_plan]
+		@subscription.subscription_plan = SubscriptionPlan.find_by(interval_cost: session[:subscription_plan])
+		@subscription.initial_ecigarette = session[:ecigarette]
 	end
 
 	def create
+		puts session[:eliquids]
 		@subscription = Subscription.new(subscription_params)
-        session[:eliquids].each do |id|
-            @subscription.subscription_choices.build(eliquid: Eliquid.find(id))
+        session[:eliquids].each do |flavour|
+            @subscription.subscription_choices.build(eliquid: Eliquid.find_by(flavour: flavour))
         end
-	    @subscription.subscription_plan = SubscriptionPlan.find(session[:subscription_plan])
+	    @subscription.subscription_plan = SubscriptionPlan.find_by(interval_cost: session[:subscription_plan])
         if @subscription.save
             redirect @subscription
 		else
@@ -24,7 +25,12 @@ class SubscriptionsController < ApplicationController
     end
 
     def newPlan
-
+	    # Store object into session, don't know how to return 500 or redirect to subscriptions/new shit head
+		if request.xhr?
+			session[:eliquids] = params[:subscription][:flavours]
+			session[:subscription_plan] = params[:subscription][:price]
+			session[:ecigarette] = params[:cigarette]
+		end
     end
 
 	private

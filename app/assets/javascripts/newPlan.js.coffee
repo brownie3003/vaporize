@@ -167,3 +167,12 @@ $ ->
 	$("#showMeTheMoney").on 'click', (e) ->
 		e.preventDefault()
 		showSubscription()
+
+	$("#pay").on 'click', (e) ->
+		e.preventDefault()
+		$.ajax "/subscribe",
+			type: "GET"
+			dataType: "json"
+			data: user
+			complete: ->
+				window.location.href = "/subscriptions/new" #Massive shitty hack
