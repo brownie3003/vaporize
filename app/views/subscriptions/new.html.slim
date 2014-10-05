@@ -28,21 +28,22 @@
         .form-group
             = subscription_form.select :shipping_day, options_for_select(1..31)
 
-        h2 Subscription Summary
-        p
-            = @subscription.subscription_plan.eliquid_count
-            | x10ml bottles
-        p
-            | £
-            = @subscription.subscription_plan.interval_cost
-            |  per month
-        - if @subscription.initial_ecigarette
+        - if @subscription.subscription_plan
+            h2 Subscription Summary
             p
-                | An e-cigarette kit will be included in your first subscription (£25)
-            h3
-                | You will be charged £
-                = @subscription.subscription_plan.interval_cost + 25
-                |  today.
+                = @subscription.subscription_plan.eliquid_count
+                | x10ml bottles
+            p
+                | £
+                = @subscription.subscription_plan.interval_cost
+                |  per month
+            - if @subscription.initial_ecigarette
+                p
+                    | An e-cigarette kit will be included in your first subscription (£25)
+                h3
+                    | You will be charged £
+                    = @subscription.subscription_plan.interval_cost + 25
+                    |  today.
 
         h2 Payment Details
         .form-group
