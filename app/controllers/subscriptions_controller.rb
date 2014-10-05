@@ -4,6 +4,7 @@ class SubscriptionsController < ApplicationController
 		@subscription = Subscription.new
 		@subscription.subscription_plan = SubscriptionPlan.find_by(interval_cost: session[:subscription_plan])
 		@subscription.initial_ecigarette = session[:ecigarette]
+		puts session[:eliquids]
 	end
 
 	def create
