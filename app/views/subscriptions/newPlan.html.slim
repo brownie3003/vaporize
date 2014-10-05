@@ -13,7 +13,7 @@ form#subscription
                         | No I already have my own e-cigarette. I just require e-liquid.
             a.next-question
                 span.glyphicon.glyphicon-circle-arrow-down
-    .row#eLiquid
+    .row#eLiquid.hidden
         .container
             a.prev-question
                 span.glyphicon.glyphicon-circle-arrow-up
@@ -33,16 +33,24 @@ form#subscription
                     option value="18" 5 x 10ml
             a.next-question
                 span.glyphicon.glyphicon-circle-arrow-down
-    .row#flavours
+    .row#flavours.hidden
         .container
             a.prev-question
                 span.glyphicon.glyphicon-circle-arrow-up
-            .question#boxContent
+            .question#preSelectedBottles.hidden
+                h2 Your Subscription
+                h4#bottleCount
+                p
+                    | We've gone ahead and picked you out a selection of fantastic flavours to try. Don't worry 
+                    | you can change your flavours next month. Or if you want to select your own flavours, 
+                    a#letMePick click here.
+
+            .question#boxContent.hidden
                 h2 Select your flavours
 
-                = render "partials/eLiquidBox"
+            = render "partials/eLiquidBox"
 
-                button#showMeTheMoney This button will light up when they've picked their shit
+            button#showMeTheMoney.btn.btn-lg.btn-primary Click for Happiness
     .row.hidden#offer
         .container
             a.prev-question
@@ -52,6 +60,6 @@ form#subscription
                 h3.price
                 h3.cigarette-offer
                 p.pricing-explanation
-                button Pay
+                button.btn.btn-lg.btn-primary Pay
                 h3 Delivery is free.
                 h3 You can cancel your subscription at any time.

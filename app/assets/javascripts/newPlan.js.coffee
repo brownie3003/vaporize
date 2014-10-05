@@ -48,58 +48,93 @@ $ ->
 				return false
 		return true
 
+	# Show the flavour picker for the correct number of bottles
+	showFlavourPicker = (numberOfBottles) ->
+		for i in [3..5]
+			if i == numberOfBottles
+				$(".e-liquid-box-" + i).removeClass("hidden")
+			else
+				$(".e-liquid-box-" + i).addClass("hidden")
+	
+	# Fill flavours with set picks
+	autoPickFlavours = (numberOfBottles) ->
+		user.subscription.flavours[1] = "tabacco"
+		user.subscription.flavours[2] = "menthol"
+		user.subscription.flavours[3] = "blueberry"
+		if numberOfBottles == 5
+			user.subscription.flavours[4] = "tabacco"
+			user.subscription.flavours[5] = "apple"
+		if numberOfBottles == 4
+			user.subscription.flavours[4] = "tabacco"
+			
+	resetFlavoursPicker = ->
+		$("#preSelectedBottles").addClass("hidden")
+		$("#boxContent, [class*='e-liquid-box-']").addClass("hidden")
+
 	### Hide stuff on load ###
-	$(".prev-question, .next-question, #subscriptionLevel, .e-liquid-box-4, .e-liquid-box-5").hide()
+	$(".prev-question, .next-question").hide()
 	$("#showMeTheMoney").attr("disabled", true)
 
 	### Listeners ###
 
 	# When anything changes on the form.
 	$('#subscription').on 'change', (e) ->
+		# We will check and enable this button if everything is correct at each change
+		$("#showMeTheMoney").attr("disabled", true)
 		# Do you have an e-cigarette?
 		if $(e.target).data('question') == 'e-cigarette'
 			cigaretteprice = $('input:radio[name = "e-cigarette"]:checked').val()
 
+			resetFlavoursPicker()
+			
 			# Assign cigarette choice to user object
 			if cigaretteprice == "true"
 				user.cigarette = true
-				$("#subscriptionLevel").hide()
-				$("#dailyCigarettes").show()
+				$("#subscriptionLevel").addClass("hidden")
+				$("#dailyCigarettes").removeClass("hidden")
 			else
 				user.cigarette = false
-				$("#dailyCigarettes").hide()
-				$("#subscriptionLevel").show()
+				$("#dailyCigarettes").addClass("hidden")
+				$("#subscriptionLevel").removeClass("hidden")
 
+			$("#eLiquid").removeClass("hidden")
 			moveToNextQuestion('#eLiquid')
 
 		# How much e-liquid do you want?
 		if $(e.target).data('question') == 'subscription level'
 			user.subscription.price =  parseInt($(e.target).val())
-			# empty the flavours object to avoid allowing user to submit a strange set of flavours
-			user.subscription.flavours = 1: undefined
-			$("#showMeTheMoney").attr("disabled", true)
+			$("#flavours").removeClass("hidden")
+
+			resetFlavoursPicker()
+			
 			# Get bottle number from subscription price. Horrible way to do it, but here's the mapping
 			if user.subscription.price == 12
 				user.subscription.bottles = 3
-				$(".e-liquid-box-4, .e-liquid-box-5").hide()
-				$(".e-liquid-box-3").show()
 			else if user.subscription.price == 15
 				user.subscription.bottles = 4
-				$(".e-liquid-box-3, .e-liquid-box-5").hide()
-				$(".e-liquid-box-4").show()
 			else
 				user.subscription.bottles = 5
-				$(".e-liquid-box-3, .e-liquid-box-4").hide()
-				$(".e-liquid-box-5").show()
+
+			# empty the flavours object to avoid allowing user to submit a strange set of flavours
+			user.subscription.flavours = 1: undefined
+			$("#showMeTheMoney").attr("disabled", true)
+
+			if user.cigarette == true
+				$("#preSelectedBottles").removeClass("hidden")
+				$("#bottleCount").text(user.subscription.bottles + "x10ml bottles")
+				autoPickFlavours(user.subscription.bottles)
+			else #Show the flavour picker.
+				$("#boxContent").removeClass("hidden")
+				showFlavourPicker(user.subscription.bottles)
+
 			moveToNextQuestion('#flavours')
 
 		if $(e.target).data('question') == "flavour"
 			pickNumber = $(e.target).attr("id").split("-")[1]
 			user.subscription.flavours[pickNumber] = $(e.target).val()
-			# TODO this is shit, can do much better, have done. Check that all subscriptions are full.
-			if signupComplete()
-				$("#showMeTheMoney").attr("disabled", false)
 
+		if signupComplete()
+			$("#showMeTheMoney").attr("disabled", false)
 		showNavigationArrows()
 
 	# TODO all of this shit can be put into a library and use data-attributes to move to the next/prev question.
@@ -121,6 +156,13 @@ $ ->
 			moveToNextQuestion("#eLiquid")
 		else if currentQuestion == "eLiquid"
 			moveToNextQuestion("#flavours")
+			
+	$("#letMePick").on 'click', ->
+		user.subscription.flavours = 1: undefined
+		$("#showMeTheMoney").attr("disabled", true)
+		$("#preSelectedBottles").addClass("hidden")
+		$("#boxContent").removeClass("hidden")
+		showFlavourPicker(user.subscription.bottles)
 
 	$("#showMeTheMoney").on 'click', (e) ->
 		e.preventDefault()
