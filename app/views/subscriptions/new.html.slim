@@ -43,6 +43,11 @@
                 | You will be charged £
                 = @subscription.subscription_plan.interval_cost + 25
                 |  today.
+        - else
+            h3
+                | You will be charged £
+                = @subscription.subscription_plan.interval_cost
+                |  today.
 
         h2 Payment Details
         .form-group
