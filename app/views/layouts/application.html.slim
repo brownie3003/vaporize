@@ -1,9 +1,10 @@
 doctype html
 html
         head
-                title Vaporize
-                = stylesheet_link_tag    'application', media: 'all'
-                = csrf_meta_tags
+            title Vaporize
+            script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"
+            = stylesheet_link_tag    'application', media: 'all'
+            = csrf_meta_tags
         body
             header
                 .navbar.navbar-default.navbar-fixed-top
