@@ -1,65 +1,64 @@
 form#subscription
-    .row#eCigarette
-        .container
-            .question
-                h2 Do you require an e-cigarette?
-                .radio
-                    label
-                        input type="radio" name="e-cigarette" id="optionsRadios1" value="true" data-question="e-cigarette"
-                        | Yes
-                .radio
-                    label
-                        input type="radio" name="e-cigarette" id="optionsRadios2" value="false" data-question="e-cigarette"
-                        | No I already have my own e-cigarette. I just require e-liquid.
-            a.next-question
-                span.glyphicon.glyphicon-circle-arrow-down
-    .row#eLiquid.hidden
-        .container
-            a.prev-question
-                span.glyphicon.glyphicon-circle-arrow-up
-            .question#dailyCigarettes
-                h2 How many cigarettes do you smoke a day?
-                select.form-control.subscription data-question="subscription level"
-                    option default="" Select an answer
-                    option value="12" less than 10
-                    option value="15" 10 - 20
-                    option value="18" more than 20
-            .question#subscriptionLevel
-                h2 Pick you subscription level.
-                select.form-control.subscription data-question="subscription level"
-                    option default="" Select an answer
-                    option value="12" 3 x 10ml
-                    option value="15" 4 x 10ml
-                    option value="18" 5 x 10ml
-            a.next-question
-                span.glyphicon.glyphicon-circle-arrow-down
-    .row#flavours.hidden
-        .container
-            a.prev-question
-                span.glyphicon.glyphicon-circle-arrow-up
-            .question#preSelectedBottles.hidden
-                h2 Your Subscription
-                h4#bottleCount
-                p
-                    | We've gone ahead and picked you out a selection of fantastic flavours to try. Don't worry 
-                    | you can change your flavours next month. Or if you want to select your own flavours, 
-                    a#letMePick click here.
-
-            .question#boxContent.hidden
-                h2 Select your flavours
-
-            = render "partials/eLiquidBox"
-
-            button#showMeTheMoney.btn.btn-lg.btn-primary Click for Happiness
-    .row.hidden#offer
-        .container
-            a.prev-question
-                span.glyphicon.glyphicon-circle-arrow-up
-            .col-xs-8.col-xs-offset-2.one-month
-                h2 Monthly
-                h3.price
-                h3.cigarette-offer
-                p.pricing-explanation
-                button.btn.btn-lg.btn-primary#pay Pay
-                h3 Delivery is free.
-                h3 You can cancel your subscription at any time.
+    #fullPage
+        .section
+            .container
+                h2 E-Cigarette
+                .question
+                    h3 Do you require an e-cigarette?
+                    .radio
+                        label
+                            input type="radio" name="e-cigarette" id="optionsRadios1" value="true" data-question="e-cigarette"
+                            | Yes
+                    .radio
+                        label
+                            input type="radio" name="e-cigarette" id="optionsRadios2" value="false" data-question="e-cigarette"
+                            | No I already have my own e-cigarette. I just require e-liquid.
+        .section
+            .container
+                h2 Quantity of E-Liquid
+                .tip#quantityTip
+                    p You need to answer earlier questions first.
+                .question#dailyCigarettes.hidden
+                    h3 How many cigarettes do you smoke a day?
+                    select.form-control.quantity data-question="subscription level"
+                        option default="" Select an answer
+                        option value="12" less than 10
+                        option value="15" 10 - 20
+                        option value="18" more than 20
+                .question#subscriptionLevel.hidden
+                    h3 Pick you subscription level.
+                    select.form-control.quantity data-question="subscription level"
+                        option default="" Select an answer
+                        option value="12" 3 x 10ml
+                        option value="15" 4 x 10ml
+                        option value="18" 5 x 10ml
+        .section
+            .container
+                h2 Flavours
+                .tip#flavoursTip
+                    p You need to answer earlier questions first.
+                .question#preSelectedBottles.hidden
+                    h4#bottleCount
+                    p
+                        | We've gone ahead and picked you out a selection of fantastic flavours to try. Don't worry 
+                        | you can change your flavours next month. Or if you want to select your own flavours, 
+                        a#letMePick click here.
+    
+                .question#boxContent.hidden
+                    h3 Select your flavours
+    
+                = render "partials/eLiquidBox"
+                button#showMeTheMoney.btn.btn-lg.btn-primary Click for Happiness
+        .section
+            .container
+                .col-xs-8.col-xs-offset-2.one-month
+                    h2 Price
+                    .tip#payTip
+                        p Answer all the questions to get a subscription price
+                    .subscription-offer.hidden
+                        h3.price
+                        h3.cigarette-offer
+                        p.pricing-explanation
+                        button.btn.btn-lg.btn-primary#pay Pay
+                        h3 Delivery is free.
+                        h3 You can cancel your subscription at any time.

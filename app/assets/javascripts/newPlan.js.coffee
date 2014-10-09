@@ -15,13 +15,6 @@ $ ->
 		user.cigarette != undefined && user.subscription.price != undefined && allFlavoursPicked()
 
 	showSubscription = ->
-		showOneMonth()
-		$("#offer").removeClass("hidden")
-		$('html, body').animate({
-			scrollTop: $("#offer").offset().top
-		}, 1000);
-
-	showOneMonth = ->
 		$(".one-month").find(".price").html("£" + user.subscription.price + "/month")
 		if user.cigarette == true
 			$(".one-month").find(".cigarette-offer").html("£25 for the e-cigarette kit")
@@ -31,14 +24,7 @@ $ ->
 		else
 			$(".one-month").find(".pricing-explanation").html("You will simply pay £" + user.subscription.price + " per month
 			                      for your e-liquid.")
-
-	moveToNextQuestion = (next) ->
-		$('html, body').animate({
-			scrollTop: $(next).offset().top
-		}, 1000);
-
-	showNavigationArrows = ->
-		$(".prev-question, .next-question").delay(1000).fadeIn(500)
+		$.fn.fullpage.moveSectionDown()
 
 	# Checks whether the number of flavours required by the subscription have been picked
 	allFlavoursPicked = ->
@@ -72,8 +58,7 @@ $ ->
 		$("#boxContent, [class*='e-liquid-box-']").addClass("hidden")
 
 	### Hide stuff on load ###
-	$(".prev-question, .next-question").hide()
-	$("#showMeTheMoney").attr("disabled", true)
+	$("#showMeTheMoney, #pay").attr("disabled", true)
 
 	### Listeners ###
 
@@ -84,6 +69,9 @@ $ ->
 		# Do you have an e-cigarette?
 		if $(e.target).data('question') == 'e-cigarette'
 			cigaretteprice = $('input:radio[name = "e-cigarette"]:checked').val()
+			
+			$("#quantityTip").addClass("hidden")
+			$(".subscription-offer").addClass("hidden")
 
 			resetFlavoursPicker()
 			
@@ -98,12 +86,16 @@ $ ->
 				$("#subscriptionLevel").removeClass("hidden")
 
 			$("#eLiquid").removeClass("hidden")
-			moveToNextQuestion('#eLiquid')
+			$.fn.fullpage.moveSectionDown()
 
 		# How much e-liquid do you want?
 		if $(e.target).data('question') == 'subscription level'
 			user.subscription.price =  parseInt($(e.target).val())
 			$("#flavours").removeClass("hidden")
+			
+			$("#flavoursTip").addClass("hidden")
+
+			$(".subscription-offer").addClass("hidden")
 
 			resetFlavoursPicker()
 			
@@ -127,7 +119,7 @@ $ ->
 				$("#boxContent").removeClass("hidden")
 				showFlavourPicker(user.subscription.bottles)
 
-			moveToNextQuestion('#flavours')
+			$.fn.fullpage.moveSectionDown()
 
 		if $(e.target).data('question') == "flavour"
 			pickNumber = $(e.target).attr("id").split("-")[1]
@@ -135,37 +127,19 @@ $ ->
 
 		if signupComplete()
 			$("#showMeTheMoney").attr("disabled", false)
-		showNavigationArrows()
-
-	# TODO all of this shit can be put into a library and use data-attributes to move to the next/prev question.
-	$(".prev-question").on 'click', (e) ->
-		e.preventDefault()
-		currentQuestion = $(e.target).parents(".row").attr("id")
-
-		if currentQuestion == "eLiquid"
-			moveToNextQuestion("#eCigarette")
-		else if currentQuestion == "flavours"
-			moveToNextQuestion("#eLiquid")
-		else if currentQuestion == "offer"
-			moveToNextQuestion("#flavours")
-
-	$(".next-question").on 'click', (e) ->
-		currentQuestion = $(e.target).parents(".row").attr("id")
-
-		if currentQuestion == "eCigarette"
-			moveToNextQuestion("#eLiquid")
-		else if currentQuestion == "eLiquid"
-			moveToNextQuestion("#flavours")
 			
 	$("#letMePick").on 'click', ->
 		user.subscription.flavours = 1: undefined
-		$("#showMeTheMoney").attr("disabled", true)
+		$("#showMeTheMoney, #pay").attr("disabled", true)
 		$("#preSelectedBottles").addClass("hidden")
 		$("#boxContent").removeClass("hidden")
 		showFlavourPicker(user.subscription.bottles)
 
 	$("#showMeTheMoney").on 'click', (e) ->
 		e.preventDefault()
+		$.fn.fullpage.moveSectionDown()
+		$(".subscription-offer").removeClass("hidden")
+		$("#pay").attr("disabled", false)
 		showSubscription()
 
 	$("#pay").on 'click', (e) ->

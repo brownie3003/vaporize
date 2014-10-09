@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery.turbolinks
 //= require jquery_ujs
-//= require turbolinks
+//= require jquery-ui
 //= require bootstrap-sprockets
+//= require jquery.fullPage
 //= require_tree .

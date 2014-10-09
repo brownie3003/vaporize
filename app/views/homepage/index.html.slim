@@ -1,19 +1,18 @@
-= video_tag ("smoke.mp4"), autoplay: true, id: "bgVid"
-section
-    .vaporize-jumbotron
+#fullPage
+    .section
+        = video_tag ("smoke.mp4"), id: "bgVid", loop: true
+        
         .hero-message
             h1 E-cigarette subscriptions
             p Your monthly supply of all you need to start using e-cigarettes.
             p
             = link_to "Get Started", subscribe_path, class:"btn btn-lg btn-default"
-section.info-section#eCigarettes
-    .container
-        h1 E-Cigarettes
-    
-section.info-section#eLiquids
-    .container
-        h1 E-Liquid
-    
-section.info-section#pricing.last-section
-    .container
-        h1 Price & Delivery
+    .section
+        .container
+            h2 E-Cigarettes
+    .section
+        .container
+            h1 E-Liquid
+    .section
+        .container
+            h1 Price & Delivery

@@ -1,22 +1,8 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
-
+@import "jquery.fullPage";
 @import "homepage";
 @import "subscriptions";
-
-html, body {
-    height: 100%;
-}
-
-body {
-    padding-top: 50px;
-    position: relative;
-}
-
-.vaporize-container {
-    padding-top: 70px;
-    text-align: center;
-}
 
 .hidden {
     display: none;
@@ -31,4 +17,8 @@ body {
 footer {
     height: 100px;
     color: white;
+}
+
+#fullPage {
+    text-align: center;
 }

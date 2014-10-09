@@ -1,2 +1,2 @@
-//= require jquery
+//= require jquery.fullPage
 //= require bootstrap-sprockets
