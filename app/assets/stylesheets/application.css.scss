@@ -4,32 +4,18 @@
 @import "homepage";
 @import "subscriptions";
 
+html, body {
+    height: 100%;
+}
+
+body {
+    padding-top: 50px;
+    position: relative;
+}
+
 .vaporize-container {
     padding-top: 70px;
     text-align: center;
-}
-
-.jumbotron {
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    margin-bottom: 0px;
-    background: image-url("hero.jpg") no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    display: table;
-    .container {
-        display: table-cell;
-        vertical-align: middle;
-        .hero-message {
-            width: 66%;
-            color: white;
-            margin: 0 auto;
-            text-align: center;
-        }
-    }
 }
 
 .hidden {
@@ -40,4 +26,9 @@
     position: fixed;
     margin-left: 70%;
     bottom: 0;
+}
+
+footer {
+    height: 100px;
+    color: white;
 }

@@ -26,5 +26,9 @@ module Vaporize
         # config.i18n.default_locale = :de
 
         config.serve_static_assets = true
+
+        config.assets.paths << "#{Rails.root}/app/assets/videos"
+
+        config.assets.enabled = true
     end
 end
