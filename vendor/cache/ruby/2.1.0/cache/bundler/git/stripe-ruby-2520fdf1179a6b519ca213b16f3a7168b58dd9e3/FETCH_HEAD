@@ -5,7 +5,7 @@ c98a5c4e2678c93c02a6d13652966892cea013b7		branch 'balance-transactions' of https
 2827ad15d6fd255f58758daad9008e41348ebb67		branch 'better-rakefile' of https://github.com/stripe/stripe-ruby
 f7467728d7a3cc385f9b1b936e8662733fc2c7b9		branch 'fix-connection-error-message' of https://github.com/stripe/stripe-ruby
 3c76c9f150e328208d1c8fd9e004f00928b36931		branch 'fix-gemfiles' of https://github.com/stripe/stripe-ruby
-ed873459b734f16055bfc2a6aa09abc91abd21df		branch 'master' of https://github.com/stripe/stripe-ruby
+da216fd53b7a5386c136e93bdfe5efaff20682b7		branch 'master' of https://github.com/stripe/stripe-ruby
 57309a05de434417bd13cb14836e754ea2a2af9d		branch 'recipient-cards' of https://github.com/stripe/stripe-ruby
 5e4a9548fa1da7c995b22804dc1b71f330e036a6		branch 'richo-reify-socket-error' of https://github.com/stripe/stripe-ruby
 9e807e957b197597a0447daee7a9f778516784cd		branch 'sp-disputes' of https://github.com/stripe/stripe-ruby

@@ -11,6 +11,4 @@ $ ->
 		menu: "#menu"
 		navigation: true
 		
-	# Play the background video because fullPage disables it
-	if $("#bgVid").get(0) != undefined 
-		$("#bgVid").get(0).play()
+	$("#bgVid").get(0).play()

@@ -16,4 +16,3 @@
 //= require jquery-ui
 //= require bootstrap-sprockets
 //= require jquery.fullPage
-//= require_tree .
