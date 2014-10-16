@@ -1,4 +1,4 @@
-.container.vaporize-container
+.container
     = form_for @subscription, url: {action: "create"}, html: {role: "form"} do |subscription_form|
         .form-group
             = subscription_form.text_field :first_name, placeholder: "First name"
