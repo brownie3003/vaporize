@@ -3,11 +3,13 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $ ->
-	$("#fullPage").fullpage
-		verticalCentered: true
-		resize: false
-		css3: true
-		navigation: true
+	fullPage = $("#fullPage")
+	if fullPage.length
+		fullPage.fullpage
+			verticalCentered: true
+			resize: false
+			css3: true
+			navigation: true
 
 	# Declare user object
 	user =
