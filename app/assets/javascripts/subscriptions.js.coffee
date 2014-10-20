@@ -4,11 +4,20 @@
 
 $ ->
 	fullPage = $("#fullPage")
-	fullPage.fullpage
-		verticalCentered: true
-		resize: false
-		css3: true
-		autoScrolling: false
+	if fullPage.length
+		fullPage.fullpage
+			verticalCentered: true
+			resize: false
+			css3: true
+			autoScrolling: false
+	
+	# Hackery pretending we are using fullPage on this page to allow scrolling
+	signUp = $("#signUp")
+	if signUp.length
+		signUp.fullpage
+			resize: false
+			css3: true
+			autoScrolling: false
 
 	# Declare user object
 	user =
