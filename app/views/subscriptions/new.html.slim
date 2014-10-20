@@ -1,66 +1,67 @@
 .container
-    = form_for @subscription, url: {action: "create"}, html: {role: "form"} do |subscription_form|
-        .form-group
-            = subscription_form.text_field :first_name, placeholder: "First name"
-        .form-group
-            = subscription_form.text_field :last_name, placeholder: "Last name"
-        .form-group
-            = subscription_form.email_field :email, placeholder: "Email address"
-
-        = subscription_form.fields_for :address, Address.new do |address_form|
-            h3 Address
+    .col-sm-4.col-sm-offset-4
+        = form_for @subscription, url: {action: "create"}, html: {role: "form", id: "signUp"} do |subscription_form|
             .form-group
-                = address_form.text_field :house_number, placeholder: "House/Flat no."
+                = subscription_form.text_field :first_name, placeholder: "First name", class: "form-control"
             .form-group
-                = address_form.text_field :street, placeholder: "Street"
+                = subscription_form.text_field :last_name, placeholder: "Last name", class: "form-control"
             .form-group
-                = address_form.text_field :second_line, placeholder: "Second line"
+                = subscription_form.email_field :email, placeholder: "Email address", class: "form-control"
+    
+            = subscription_form.fields_for :address, Address.new do |address_form|
+                h3 Address
+                .form-group
+                    = address_form.text_field :house_number, placeholder: "House/Flat no.", class: "form-control"
+                .form-group
+                    = address_form.text_field :street, placeholder: "Street", class: "form-control"
+                .form-group
+                    = address_form.text_field :second_line, placeholder: "Second line", class: "form-control"
+                .form-group
+                    = address_form.text_field :city, placeholder: "City", class: "form-control"
+                .form-group
+                    = address_form.text_field :county, placeholder: "County", class: "form-control"
+                .form-group
+                    = address_form.text_field :postcode, placeholder: "Postcode", class: "form-control"
+    
+            h2 Selected Dispatch Day
+            p Which day of the month would you like us to send your subscription.
+    
             .form-group
-                = address_form.text_field :city, placeholder: "City"
-            .form-group
-                = address_form.text_field :county, placeholder: "County"
-            .form-group
-                = address_form.text_field :postcode, placeholder: "Postcode"
-
-        h2 Selected Dispatch Day
-        p Which day of the month would you like us to send your subscription.
-
-        .form-group
-            = subscription_form.select :shipping_day, options_for_select(1..31)
-
-        h2 Subscription Summary
-        p
-            = @subscription.subscription_plan.eliquid_count
-            | x10ml bottles
-        p
-            | £
-            = @subscription.subscription_plan.interval_cost
-            |  per month
-        - if @subscription.initial_ecigarette
+                = subscription_form.select :shipping_day, options_for_select(1..31), class: "form-control"
+    
+            h2 Subscription Summary
             p
-                | An e-cigarette kit will be included in your first subscription (£25)
-            h3
-                | You will be charged £
-                = @subscription.subscription_plan.interval_cost + 25
-                |  today.
-        - else
-            h3
-                | You will be charged £
+                = @subscription.subscription_plan.eliquid_count
+                | x10ml bottles
+            p
+                | £
                 = @subscription.subscription_plan.interval_cost
-                |  today.
-
-        h2 Payment Details
-        .form-group
-            input type='text' placeholder='Card Number' id='stripe-card-number'
-        .form-group
-            input type='text' placeholder='CVC' id='stripe-cvc'
-        .form-group
-            input type='text' placeholder='Month' id='stripe-exp-month'
-        .form-group
-            input type='text' placeholder='Year' id='stripe-exp-year'
-        .form-group
-            input type='hidden' name='stripe_token' id='stripe-token'
-
-        = subscription_form.submit class: "btn btn-primary btn-lg"
-
+                |  per month
+            - if @subscription.initial_ecigarette
+                p
+                    | An e-cigarette kit will be included in your first subscription (£25)
+                h3
+                    | You will be charged £
+                    = @subscription.subscription_plan.interval_cost + 25
+                    |  today.
+            - else
+                h3
+                    | You will be charged £
+                    = @subscription.subscription_plan.interval_cost
+                    |  today.
+    
+            h2 Payment Details
+            .form-group
+                input.form-control type='text' placeholder='Card Number' id='stripe-card-number'
+            .form-group
+                input.form-control type='text' placeholder='CVC' id='stripe-cvc'
+            .form-group
+                input.form-control type='text' placeholder='Month' id='stripe-exp-month'
+            .form-group
+                input.form-control type='text' placeholder='Year' id='stripe-exp-year'
+            .form-group
+                input.form-control type='hidden' name='stripe_token' id='stripe-token'
+    
+            = subscription_form.submit class: "btn btn-default btn-lg"
+    
     script src='https://js.stripe.com/v1/'

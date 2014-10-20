@@ -25,4 +25,26 @@
                 
     .section
         .container
-            h1 Price & Delivery
+            .col-sm-8.col-sm-offset-2
+                h2 Pricing
+                p 
+                    | Pricing is based on the number of e-liquid bottles you get per month. If you don't know how 
+                    | many bottles you will need, don't worry, we'll help you during our 
+                    = link_to "sign up process", subscribe_path
+                    | .
+                p 
+                table.table.table-bordered
+                    tr
+                        td Bottles
+                        td 3
+                        td 4
+                        td 5
+                    tr
+                        td Price
+                        td £12
+                        td £15
+                        td £18
+                h2 Delivery
+                ul.list-unstyled
+                    li Free
+                    li Small enough to fit through your letter box

@@ -4,12 +4,11 @@
 
 $ ->
 	fullPage = $("#fullPage")
-	if fullPage.length
-		fullPage.fullpage
-			verticalCentered: true
-			resize: false
-			css3: true
-			navigation: true
+	fullPage.fullpage
+		verticalCentered: true
+		resize: false
+		css3: true
+		autoScrolling: false
 
 	# Declare user object
 	user =
@@ -34,8 +33,9 @@ $ ->
 					(user.subscription.price + 25) + " to pay for your e-cigarette kit. After this you will pay £" +
 					user.subscription.price + " per month.");
 		else
-			$(".one-month").find(".pricing-explanation").html("You will simply pay £" + user.subscription.price + " per month
-						                      for your e-liquid.")
+			$(".one-month").find(".pricing-explanation").html("You will simply pay £" + user.subscription.price + " per 
+											month for your e-liquid. It will be delivered through your letter box on  
+											the day you choose.")
 		$.fn.fullpage.moveSectionDown()
 
 	# Checks whether the number of flavours required by the subscription have been picked
@@ -138,6 +138,7 @@ $ ->
 			user.subscription.flavours[pickNumber] = $(e.target).val()
 
 		if signupComplete()
+			$("#payTip").addClass("hidden")
 			$("#showMeTheMoney").attr("disabled", false)
 
 	$("#letMePick").on 'click', ->

@@ -31,6 +31,7 @@ class SubscriptionsController < ApplicationController
 			session[:eliquids] = params[:subscription][:flavours]
 			session[:subscription_plan] = params[:subscription][:price]
 			session[:ecigarette] = params[:cigarette]
+			format.json { head :ok }
 		end
     end
 
