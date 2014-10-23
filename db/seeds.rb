@@ -7,9 +7,9 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 # Create some Eliquids
-Eliquid.create(name: "Tabacco", volume: "10ml")
-Eliquid.create(name: "Menthol", volume: "10ml")
-Eliquid.create(name: "Blueberry", volume: "10ml")
+Eliquid.create(name: "tabacco", volume: "10ml")
+Eliquid.create(name: "menthol", volume: "10ml")
+Eliquid.create(name: "blueberry", volume: "10ml")
 
 # Create some Subscription Plans
 SubscriptionPlan.create(name: "3X", eliquid_count: 3, interval_cost: 12, interval: "monthly", initial_cost: 0, initial_interval_count: 0, ecigarette_cost: 25)

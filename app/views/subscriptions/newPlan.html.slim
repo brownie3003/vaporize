@@ -1,4 +1,4 @@
-form#subscription
+= form_tag("/subscriptions/new", method: "GET", id: "subscriptionForm") do
     #fullPage
         .section
             .container
@@ -6,13 +6,11 @@ form#subscription
                 .question
                     h3 Do you require an e-cigarette?
                     .radio
-                        label
-                            input type="radio" name="e-cigarette" id="optionsRadios1" value="true" data-question="e-cigarette"
-                            | Yes
+                        = radio_button_tag(:ecigarette, "true", value: params[:ecigarette])
+                        = label_tag(:ecigarette_true, "Yes")
                     .radio
-                        label
-                            input type="radio" name="e-cigarette" id="optionsRadios2" value="false" data-question="e-cigarette"
-                            | No I already have my own e-cigarette. I just require e-liquid.
+                        = radio_button_tag(:ecigarette, "false")
+                        = label_tag(:ecigarette_false, "No I already have my own e-cigarette. I just require e-liquid.")
         .section
             .container
                 h2 Quantity of E-Liquid
@@ -20,18 +18,10 @@ form#subscription
                     p You need to answer earlier questions first.
                 .question#dailyCigarettes.hidden
                     h3 How many cigarettes do you smoke a day?
-                    select.form-control.quantity data-question="subscription level"
-                        option default="" Select an answer
-                        option value="12" less than 10
-                        option value="15" 10 - 20
-                        option value="18" more than 20
+                    = select(:subscription_plan, :interval_cost, options_for_select([["less than 10", "12"], ["10 - 20", "15"], ["more than 20", "18"]]), {prompt: "Please select"}, {class: "form-control quantity"})
                 .question#subscriptionLevel.hidden
                     h3 Pick you subscription level.
-                    select.form-control.quantity data-question="subscription level"
-                        option default="" Select an answer
-                        option value="12" 3 x 10ml
-                        option value="15" 4 x 10ml
-                        option value="18" 5 x 10ml
+                    = select(:subscription_plan, :interval_cost, options_for_select([["3 x 10ml", "12"], ["4 x 10ml", "15"], ["5 x 10ml", "18"]]), {prompt: "Please select"}, {class: "form-control quantity"})
         .section
             .container
                 h2 Flavours
@@ -40,13 +30,13 @@ form#subscription
                 .question#preSelectedBottles.hidden
                     h4#bottleCount
                     p
-                        | We've gone ahead and picked you out a selection of fantastic flavours to try. Don't worry 
-                        | you can change your flavours next month. Or if you want to select your own flavours, 
+                        | We've gone ahead and picked you out a selection of fantastic flavours to try. Don't worry
+                        | you can change your flavours next month. Or if you want to select your own flavours,
                         a#letMePick click here.
-    
+
                 .question#boxContent.hidden
                     h3 Select your flavours
-    
+
                 = render "partials/eLiquidBox"
                 button#showMeTheMoney.btn.btn-lg.btn-primary Click for Happiness
         .section
@@ -59,6 +49,6 @@ form#subscription
                         h3.price
                         h3.cigarette-offer
                         p.pricing-explanation
-                        button.btn.btn-lg.btn-primary#pay Pay
+                        = submit_tag("Pay", class: "btn btn-lg btn-primary", id: "pay")
                         h4 Delivery is free.
                         h4 You can cancel your subscription at any time.

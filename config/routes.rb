@@ -1,10 +1,6 @@
 Rails.application.routes.draw do
 
-	get 'subscriptions/new'
-
-	post 'subscriptions/create'
-
-	get 'subscriptions/edit'
+	resources :subscriptions
 
 	get 'subscribe', to: 'subscriptions#newPlan'
 

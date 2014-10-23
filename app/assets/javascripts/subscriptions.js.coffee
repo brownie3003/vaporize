@@ -10,7 +10,7 @@ $ ->
 			resize: false
 			css3: true
 			autoScrolling: false
-	
+
 	# Hackery pretending we are using fullPage on this page to allow scrolling
 	signUp = $("#signUp")
 	if signUp.length
@@ -26,24 +26,24 @@ $ ->
 			bottles: undefined,
 			flavours:
 				1: undefined
-		cigarette: true
+		ecigarette: true
 
 	### Functions ###
 
 	# Return true if all questions have been answered and the user object is complete
 	signupComplete = ->
-		user.cigarette != undefined && user.subscription.price != undefined && allFlavoursPicked()
+		user.ecigarette != undefined && user.subscription.price != undefined && allFlavoursPicked()
 
 	showSubscription = ->
 		$(".one-month").find(".price").html("£" + user.subscription.price + "/month")
-		if user.cigarette == true
+		if user.ecigarette == true
 			$(".one-month").find(".cigarette-offer").html("£25 for the e-cigarette kit")
 			$(".one-month").find(".pricing-explanation").html("Your first payment will be £" +
 					(user.subscription.price + 25) + " to pay for your e-cigarette kit. After this you will pay £" +
 					user.subscription.price + " per month.");
 		else
-			$(".one-month").find(".pricing-explanation").html("You will simply pay £" + user.subscription.price + " per 
-											month for your e-liquid. It will be delivered through your letter box on  
+			$(".one-month").find(".pricing-explanation").html("You will simply pay £" + user.subscription.price + " per
+											month for your e-liquid. It will be delivered through your letter box on
 											the day you choose.")
 		$.fn.fullpage.moveSectionDown()
 
@@ -84,12 +84,12 @@ $ ->
 	### Listeners ###
 
 	# When anything changes on the form.
-	$('#subscription').on 'change', (e) ->
+	$('#subscriptionForm').on 'change', (e) ->
 		# We will check and enable this button if everything is correct at each change
 		$("#showMeTheMoney").attr("disabled", true)
 		# Do you have an e-cigarette?
-		if $(e.target).data('question') == 'e-cigarette'
-			cigaretteprice = $('input:radio[name = "e-cigarette"]:checked').val()
+		if $(e.target).attr('name') == 'ecigarette'
+			ecigarette = $('input:radio[name = "ecigarette"]:checked').val()
 
 			$("#quantityTip").addClass("hidden")
 			$(".subscription-offer").addClass("hidden")
@@ -97,12 +97,12 @@ $ ->
 			resetFlavoursPicker()
 
 			# Assign cigarette choice to user object
-			if cigaretteprice == "true"
-				user.cigarette = true
+			if ecigarette == "true"
+				user.ecigarette = true
 				$("#subscriptionLevel").addClass("hidden")
 				$("#dailyCigarettes").removeClass("hidden")
 			else
-				user.cigarette = false
+				user.ecigarette = false
 				$("#dailyCigarettes").addClass("hidden")
 				$("#subscriptionLevel").removeClass("hidden")
 
@@ -110,7 +110,7 @@ $ ->
 			$.fn.fullpage.moveSectionDown()
 
 		# How much e-liquid do you want?
-		if $(e.target).data('question') == 'subscription level'
+		if $(e.target).attr('name') == "subscription_plan[interval_cost]"
 			user.subscription.price =  parseInt($(e.target).val())
 			$("#flavours").removeClass("hidden")
 
@@ -132,7 +132,7 @@ $ ->
 			user.subscription.flavours = 1: undefined
 			$("#showMeTheMoney").attr("disabled", true)
 
-			if user.cigarette == true
+			if user.ecigarette == true
 				$("#preSelectedBottles").removeClass("hidden")
 				$("#bottleCount").text(user.subscription.bottles + "x10ml bottles")
 				autoPickFlavours(user.subscription.bottles)
