@@ -11,14 +11,14 @@ html
                     .container
                         .navbar-header
                             a.navbar-brand href="/"  Luxiat
-                            button.navbar-toggle data-target="#navbar-main" data-toggle="collapse" type="button" 
+                            button.navbar-toggle data-target="#navbar-main" data-toggle="collapse" type="button"
                                 span.icon-bar
                                 span.icon-bar
                                 span.icon-bar
                         #navbar-main.navbar-collapse.collapse
                             ul#menu.nav.navbar-nav.navbar-right
                                 li.active
-                                    a href="/subscribe" Sign up
+                                    = link_to "Sign up", new_subscription_path
                                 - if current_page? root_path
                                     li data-menuanchor="eCigarettes"
                                         a href="#eCigarettes"  E-Cigarettes
@@ -28,7 +28,7 @@ html
                                         a href="#pricing"  Pricing & Delivery
                                 li
                                     a href=""  Manage Subscription
-                                    
+
             = yield
 
             footer

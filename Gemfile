@@ -5,7 +5,7 @@ ruby '2.1.2'
 gem 'rails', '4.1.4'
 
 # Use Mongoid for MongoDB database
-gem "mongoid", "~> 4.0.0"
+# gem "mongoid", "~> 4.0.0"
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
@@ -62,4 +62,3 @@ gem 'jquery-ui-rails'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 
 gem "bower-rails", "~> 0.9.1"
-

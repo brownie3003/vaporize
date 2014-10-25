@@ -29,6 +29,7 @@ class SubscriptionsController < ApplicationController
 			end
 		end
 
+		# TODO subsciption_plan_id not being associated, problem with view
 		if @subscription.save
 			redirect_to @subscription
 		else
@@ -51,7 +52,7 @@ class SubscriptionsController < ApplicationController
 				:email,
 				:subscription_plan_id,
 				:shipping_day,
-				:iniitial_ecigarette,
+				:initial_ecigarette,
 				address_attributes: [
 					:house_number,
 					:street,
