@@ -60,3 +60,6 @@ gem 'jquery-turbolinks', '2.0.2'
 gem 'jquery-ui-rails'
 
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+
+gem "bower-rails", "~> 0.9.1"
+
