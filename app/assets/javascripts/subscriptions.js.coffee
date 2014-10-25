@@ -11,48 +11,30 @@ $ ->
 			css3: true
 			autoScrolling: false
 
-	# Hackery pretending we are using fullPage on this page to allow scrolling
-	signUp = $("#signUp")
-	if signUp.length
-		signUp.fullpage
-			resize: false
-			css3: true
-			autoScrolling: false
-
-	# Declare user object
-	user =
-		subscription:
-			price: undefined,
-			bottles: undefined,
-			flavours:
-				1: undefined
-		ecigarette: true
+	# Handy little object for tracking important variables from the model
+	user = {}
 
 	### Functions ###
 
-	# Return true if all questions have been answered and the user object is complete
-	signupComplete = ->
-		user.ecigarette != undefined && user.subscription.price != undefined && allFlavoursPicked()
-
 	showSubscription = ->
-		$(".one-month").find(".price").html("£" + user.subscription.price + "/month")
-		if user.ecigarette == true
-			$(".one-month").find(".cigarette-offer").html("£25 for the e-cigarette kit")
-			$(".one-month").find(".pricing-explanation").html("Your first payment will be £" +
-					(user.subscription.price + 25) + " to pay for your e-cigarette kit. After this you will pay £" +
-					user.subscription.price + " per month.");
+		$(".price").html("£" + user.price + "/month")
+		if user.ecigarette == "true"
+			$(".cigarette-offer").html("£25 for the e-cigarette kit")
+			$(".pricing-explanation").html("Your first payment will be £" +
+					(user.price + 25) + " to pay for your e-cigarette kit. After this you will pay £" +
+					user.price + " per month.");
 		else
-			$(".one-month").find(".pricing-explanation").html("You will simply pay £" + user.subscription.price + " per
+			$(".pricing-explanation").html("You will simply pay £" + user.price + " per
 											month for your e-liquid. It will be delivered through your letter box on
 											the day you choose.")
-		$.fn.fullpage.moveSectionDown()
 
 	# Checks whether the number of flavours required by the subscription have been picked
-	allFlavoursPicked = ->
-		flavoursCount = user.subscription.bottles
-		for i in [1..flavoursCount]
-			if user.subscription.flavours[i] == undefined
+	allFlavoursPicked = (numberOfBottles) ->
+		bottles = $(".e-liquid-box-" + numberOfBottles)
+		for bottle in bottles
+			if $(bottle).find("select").val() == ""
 				return false
+		$("#signUpButtonTip").addClass("hidden")
 		return true
 
 	# Show the flavour picker for the correct number of bottles
@@ -65,21 +47,32 @@ $ ->
 
 	# Fill flavours with set picks
 	autoPickFlavours = (numberOfBottles) ->
-		user.subscription.flavours[1] = "tabacco"
-		user.subscription.flavours[2] = "menthol"
-		user.subscription.flavours[3] = "blueberry"
-		if numberOfBottles == 5
-			user.subscription.flavours[4] = "tabacco"
-			user.subscription.flavours[5] = "apple"
-		if numberOfBottles == 4
-			user.subscription.flavours[4] = "tabacco"
+		# Get all the bottles in our specified box, e.g. 3, 4, 5
+		bottles = $(".e-liquid-box-" + numberOfBottles)
+
+		# For each bottle we're going to set the value of the select
+		# Key:
+		# 1 = tabacco, 2 = menthol, 3 = blueberry (liable to change)
+		# Very hacky but quick
+		for bottle, index in bottles
+			switch index
+				when 0 then $(bottle).find("select").val("1")
+				when 1 then $(bottle).find("select").val("2")
+				when 2 then $(bottle).find("select").val("3")
+				when 3 then $(bottle).find("select").val("1")
+				when 4 then $(bottle).find("select").val("3")
 
 	resetFlavoursPicker = ->
 		$("#preSelectedBottles").addClass("hidden")
 		$("#boxContent, [class*='e-liquid-box-']").addClass("hidden")
+		$("#flavoursTip").removeClass("hidden")
+
+		# Will clear any selected option ensuring we get the correct options
+		# submitted to our controller
+		$(".flavour-select").children().removeAttr("selected")
 
 	### Hide stuff on load ###
-	$("#showMeTheMoney, #pay").attr("disabled", true)
+	$("#showMeTheMoney, #signUpButton").attr("disabled", true)
 
 	### Listeners ###
 
@@ -88,87 +81,67 @@ $ ->
 		# We will check and enable this button if everything is correct at each change
 		$("#showMeTheMoney").attr("disabled", true)
 		# Do you have an e-cigarette?
-		if $(e.target).attr('name') == 'ecigarette'
-			ecigarette = $('input:radio[name = "ecigarette"]:checked').val()
+		if $(e.target).attr('name') == 'subscription[initial_ecigarette]'
+			resetFlavoursPicker()
+
+			user.ecigarette = $('input:radio[name = "subscription[initial_ecigarette]"]:checked').val()
 
 			$("#quantityTip").addClass("hidden")
 			$(".subscription-offer").addClass("hidden")
 
-			resetFlavoursPicker()
+			# Will clear any selected subscription plan ensuring we get the
+			# correct plan submitted to our controller
+			$(".subscription-plan-select").children().removeAttr("selected")
 
 			# Assign cigarette choice to user object
-			if ecigarette == "true"
-				user.ecigarette = true
+			if user.ecigarette == "true"
 				$("#subscriptionLevel").addClass("hidden")
 				$("#dailyCigarettes").removeClass("hidden")
 			else
-				user.ecigarette = false
 				$("#dailyCigarettes").addClass("hidden")
 				$("#subscriptionLevel").removeClass("hidden")
 
-			$("#eLiquid").removeClass("hidden")
 			$.fn.fullpage.moveSectionDown()
 
 		# How much e-liquid do you want?
-		if $(e.target).attr('name') == "subscription_plan[interval_cost]"
-			user.subscription.price =  parseInt($(e.target).val())
-			$("#flavours").removeClass("hidden")
-
-			$("#flavoursTip").addClass("hidden")
-
-			$(".subscription-offer").addClass("hidden")
-
+		if $(e.target).attr('name') == "subscription[subscription_plan_id]"
 			resetFlavoursPicker()
 
-			# Get bottle number from subscription price. Horrible way to do it, but here's the mapping
-			if user.subscription.price == 12
-				user.subscription.bottles = 3
-			else if user.subscription.price == 15
-				user.subscription.bottles = 4
-			else
-				user.subscription.bottles = 5
+			user.price = $(e.target).find(':selected').data('price')
+			user.bottles =  $(e.target).find(':selected').data('bottles')
 
-			# empty the flavours object to avoid allowing user to submit a strange set of flavours
-			user.subscription.flavours = 1: undefined
+			$("#flavours").removeClass("hidden")
+			$("#flavoursTip").addClass("hidden")
+			$(".subscription-offer").addClass("hidden")
 			$("#showMeTheMoney").attr("disabled", true)
 
-			if user.ecigarette == true
+			if user.ecigarette == "true"
 				$("#preSelectedBottles").removeClass("hidden")
-				$("#bottleCount").text(user.subscription.bottles + "x10ml bottles")
-				autoPickFlavours(user.subscription.bottles)
+				$("#bottleCount").text(user.bottles + "x10ml bottles")
+				autoPickFlavours(user.bottles)
+				$("#showMeTheMoney").attr("disabled", false)
 			else #Show the flavour picker.
 				$("#boxContent").removeClass("hidden")
-				showFlavourPicker(user.subscription.bottles)
+				showFlavourPicker(user.bottles)
 
 			$.fn.fullpage.moveSectionDown()
 
-		if $(e.target).data('question') == "flavour"
-			pickNumber = $(e.target).attr("id").split("-")[1]
-			user.subscription.flavours[pickNumber] = $(e.target).val()
-
-		if signupComplete()
-			$("#payTip").addClass("hidden")
-			$("#showMeTheMoney").attr("disabled", false)
+		if $(e.target).attr('name') == "subscription_choices[]"
+			if allFlavoursPicked(user.bottles)
+				$("#showMeTheMoney").attr("disabled", false)
 
 	$("#letMePick").on 'click', ->
-		user.subscription.flavours = 1: undefined
-		$("#showMeTheMoney, #pay").attr("disabled", true)
 		$("#preSelectedBottles").addClass("hidden")
 		$("#boxContent").removeClass("hidden")
-		showFlavourPicker(user.subscription.bottles)
+		showFlavourPicker(user.bottles)
 
 	$("#showMeTheMoney").on 'click', (e) ->
 		e.preventDefault()
-		$.fn.fullpage.moveSectionDown()
 		$(".subscription-offer").removeClass("hidden")
-		$("#pay").attr("disabled", false)
+		$("#signUpButton").attr("disabled", false)
 		showSubscription()
+		$.fn.fullpage.moveSectionDown()
 
-	$("#pay").on 'click', (e) ->
+	$("#signUpButton").on 'click', (e) ->
 		e.preventDefault()
-		$.ajax "/subscribe",
-			type: "GET"
-			dataType: "json"
-			data: user
-			complete: ->
-				window.location.href = "/subscriptions/new" #Massive shitty hack
+		$.fn.fullpage.moveSectionDown()

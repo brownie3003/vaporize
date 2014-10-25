@@ -1,25 +1,36 @@
 class SubscriptionsController < ApplicationController
 
 	def show
+		@subscription = Subscription.find(params[:id])
 	end
 
 	def new
-		puts params[:ecigarette]
 		@subscription = Subscription.new
+		@eliquids = Eliquid.all
+		@subscription_plans = SubscriptionPlan.all
 		@subscription.subscription_plan = SubscriptionPlan.find_by(interval_cost: session[:subscription_plan])
 		@subscription.initial_ecigarette = session[:ecigarette]
 		puts session[:eliquids]
 	end
 
 	def create
-		puts session[:eliquids]
+		# Assign all the params coming from the view
 		@subscription = Subscription.new(subscription_params)
-        session[:eliquids].each do |flavour|
-            @subscription.subscription_choices.build(eliquid: Eliquid.find_by(name: flavour))
-        end
-	    @subscription.subscription_plan = SubscriptionPlan.find_by(interval_cost: session[:subscription_plan])
-        if @subscription.save
-            redirect_to @subscription
+
+		# Iterate over the eliquids array and build a choice for each item
+		# A good refactor would be to get rails to do the SQL itself using
+		# form_for correctly in the view.
+		params[:subscription_choices].each do |eliquid_id|
+			# Deal with all blank flavour selects
+			if eliquid_id == ""
+				next
+			else
+				@subscription.subscription_choices.build(eliquid_id: eliquid_id)
+			end
+		end
+
+		if @subscription.save
+			redirect_to @subscription
 		else
 			puts "NAY"
 			render 'new'
@@ -40,6 +51,7 @@ class SubscriptionsController < ApplicationController
 				:email,
 				:subscription_plan_id,
 				:shipping_day,
+				:iniitial_ecigarette,
 				address_attributes: [
 					:house_number,
 					:street,
