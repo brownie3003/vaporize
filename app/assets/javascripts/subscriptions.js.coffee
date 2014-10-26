@@ -108,6 +108,12 @@ $ ->
 		if $(e.target).attr('name') == "subscription[subscription_plan_id]"
 			resetFlavoursPicker()
 
+			# TODO be less shit.
+			# Because of hackery, rails will only pull out the second select
+			# for subscription plan, as ids should be unique, this will
+			# make sure both selects have the same value for form submission
+			$(".subscription-plan-select").val($(e.target).val())
+
 			user.price = $(e.target).find(':selected').data('price')
 			user.bottles =  $(e.target).find(':selected').data('bottles')
 
@@ -131,6 +137,9 @@ $ ->
 			if allFlavoursPicked(user.bottles)
 				$("#showMeTheMoney").attr("disabled", false)
 
+		if $(e.target).attr('name') == 'subscription[shipping_day]'
+			$.fn.fullpage.moveSectionDown()
+
 	$("#letMePick").on 'click', ->
 		$("#preSelectedBottles").addClass("hidden")
 		$("#boxContent").removeClass("hidden")
@@ -144,6 +153,6 @@ $ ->
 		showSubscription()
 		$.fn.fullpage.moveSectionDown()
 
-	$("#signUpButton").on 'click', (e) ->
+	$("#signUpButton, #enterAddress, #selectShippingDay").on 'click', (e) ->
 		e.preventDefault()
 		$.fn.fullpage.moveSectionDown()

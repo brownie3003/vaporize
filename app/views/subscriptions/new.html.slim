@@ -68,6 +68,7 @@
                         = subscription_form.text_field :last_name, placeholder: "Last name", class: "form-control"
                     .form-group
                         = subscription_form.email_field :email, placeholder: "Email address", class: "form-control"
+                    button.btn.btn-lg.btn-primary#enterAddress Enter Address
 
         .section
             .container
@@ -86,11 +87,11 @@
                             = address_form.text_field :county, placeholder: "County", class: "form-control"
                         .form-group
                             = address_form.text_field :postcode, placeholder: "Postcode", class: "form-control"
-
+                    button.btn.btn-lg.btn-primary#selectShippingDay Select Shipping Day
         .section
             .container
                 .col-sm-4.col-sm-offset-4
-                    h2 Selected Dispatch Day
+                    h2 Selected Shipping Day
                     p Which day of the month would you like us to send your subscription.
 
                     .form-group
@@ -132,6 +133,6 @@
                     .form-group
                         input.form-control type='hidden' name='stripe_token' id='stripe-token'
 
-                    = subscription_form.submit class: "btn btn-default btn-lg"
+                    = subscription_form.submit "Pay", class: "btn btn-default btn-lg"
 
     script src='https://js.stripe.com/v1/'
