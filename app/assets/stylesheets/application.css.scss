@@ -3,14 +3,15 @@
 @import "fullpage.js/jquery.fullPage";
 @import "homepage";
 @import "subscriptions";
+@import url(http://fonts.googleapis.com/css?family=Raleway);
 
 .hidden {
     display: none;
 }
 
 body {
-    font-family: 'Amatic SC', cursive;
-    font-weight: 700;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
     font-size: 18px;
 }
 
