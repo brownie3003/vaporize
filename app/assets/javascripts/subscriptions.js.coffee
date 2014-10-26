@@ -24,6 +24,7 @@ $ ->
 					(user.price + 25) + " to pay for your e-cigarette kit. After this you will pay £" +
 					user.price + " per month.");
 		else
+			$(".cigarette-offer").html("")
 			$(".pricing-explanation").html("You will simply pay £" + user.price + " per
 											month for your e-liquid. It will be delivered through your letter box on
 											the day you choose.")
@@ -139,6 +140,7 @@ $ ->
 		e.preventDefault()
 		$(".subscription-offer").removeClass("hidden")
 		$("#signUpButton").attr("disabled", false)
+		$("#signUpTip").addClass("hidden")
 		showSubscription()
 		$.fn.fullpage.moveSectionDown()
 
