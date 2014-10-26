@@ -34,7 +34,7 @@ $ ->
 		for bottle in bottles
 			if $(bottle).find("select").val() == ""
 				return false
-		$("#signUpButtonTip").addClass("hidden")
+		$("#signUpTip").addClass("hidden")
 		return true
 
 	# Show the flavour picker for the correct number of bottles
