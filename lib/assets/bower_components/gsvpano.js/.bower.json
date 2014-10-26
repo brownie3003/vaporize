@@ -1,0 +1,12 @@
+{
+  "name": "gsvpano.js",
+  "_cacheHeaders": {
+    "ETag": "\"c518b9627747bde4e805a2b33f6f5ed3\"",
+    "Content-Type": "text/html; charset=utf-8"
+  },
+  "_release": "e-tag:c518b9627",
+  "main": "index.js",
+  "_source": "https://github.com/rharriso/GSVPano.js/blob/master/src/GSVPano.js",
+  "_target": "*",
+  "_originalSource": "https://github.com/rharriso/GSVPano.js/blob/master/src/GSVPano.js"
+}

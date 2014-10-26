@@ -1,0 +1,14 @@
+{
+  "name": "threex",
+  "homepage": "https://github.com/rharriso/threex",
+  "version": "0.0.1",
+  "_release": "0.0.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.0.1",
+    "commit": "86c2df223c92e87a709935e27ea890a0017a345e"
+  },
+  "_source": "git@github.com:rharriso/threex.git",
+  "_target": "*",
+  "_originalSource": "git@github.com:rharriso/threex.git"
+}
