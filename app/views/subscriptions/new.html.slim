@@ -2,6 +2,8 @@
     = form_for @subscription, html: {role: "form", id: "subscriptionForm"} do |subscription_form|
         .section
             .container
+                = render 'partials/error_messages'
+
                 h2 E-Cigarette
                 .question
                     h3 Do you require an e-cigarette?
@@ -63,11 +65,11 @@
                 .col-sm-4.col-sm-offset-4
                     h2 Personal Details
                     .form-group
-                        = subscription_form.text_field :first_name, placeholder: "First name", class: "form-control"
+                        = subscription_form.text_field :first_name, placeholder: "First name*", class: "form-control"
                     .form-group
-                        = subscription_form.text_field :last_name, placeholder: "Last name", class: "form-control"
+                        = subscription_form.text_field :last_name, placeholder: "Last name*", class: "form-control"
                     .form-group
-                        = subscription_form.email_field :email, placeholder: "Email address", class: "form-control"
+                        = subscription_form.email_field :email, placeholder: "Email address*", class: "form-control"
                     button.btn.btn-lg.btn-primary#enterAddress Enter Address
 
         .section
@@ -76,17 +78,17 @@
                     = subscription_form.fields_for :address, Address.new do |address_form|
                         h2 Address
                         .form-group
-                            = address_form.text_field :house_number, placeholder: "House/Flat no.", class: "form-control"
+                            = address_form.text_field :house_number, placeholder: "House/Flat no.*", class: "form-control"
                         .form-group
-                            = address_form.text_field :street, placeholder: "Street", class: "form-control"
+                            = address_form.text_field :street, placeholder: "Street*", class: "form-control"
                         .form-group
                             = address_form.text_field :second_line, placeholder: "Second line", class: "form-control"
                         .form-group
-                            = address_form.text_field :city, placeholder: "City", class: "form-control"
+                            = address_form.text_field :city, placeholder: "City*", class: "form-control"
                         .form-group
                             = address_form.text_field :county, placeholder: "County", class: "form-control"
                         .form-group
-                            = address_form.text_field :postcode, placeholder: "Postcode", class: "form-control"
+                            = address_form.text_field :postcode, placeholder: "Postcode*", class: "form-control"
                     button.btn.btn-lg.btn-primary#selectShippingDay Select Shipping Day
         .section
             .container
@@ -96,6 +98,7 @@
 
                     .form-group
                         = subscription_form.select :shipping_day, options_for_select(1..31), class: "form-control"
+                    button.btn.btn-lg.btn-primary#enterCardDetails Enter Card Details
 
                     / h2 Subscription Summary
                     / p
@@ -123,13 +126,13 @@
                 .col-sm-4.col-sm-offset-4
                     h2 Payment Details
                     .form-group
-                        input.form-control type='text' placeholder='Card Number' id='stripe-card-number'
+                        input.form-control type='text' placeholder='Card Number*' id='stripe-card-number'
                     .form-group
-                        input.form-control type='text' placeholder='CVC' id='stripe-cvc'
+                        input.form-control type='text' placeholder='CVC*' id='stripe-cvc'
                     .form-group
-                        input.form-control type='text' placeholder='Month' id='stripe-exp-month'
+                        input.form-control type='text' placeholder='Expiry Month (MM)*' id='stripe-exp-month'
                     .form-group
-                        input.form-control type='text' placeholder='Year' id='stripe-exp-year'
+                        input.form-control type='text' placeholder='Expiry Year (YYYY)*' id='stripe-exp-year'
                     .form-group
                         input.form-control type='hidden' name='stripe_token' id='stripe-token'
 

@@ -8,9 +8,6 @@ class SubscriptionsController < ApplicationController
 		@subscription = Subscription.new
 		@eliquids = Eliquid.all
 		@subscription_plans = SubscriptionPlan.all
-		@subscription.subscription_plan = SubscriptionPlan.find_by(interval_cost: session[:subscription_plan])
-		@subscription.initial_ecigarette = session[:ecigarette]
-		puts session[:eliquids]
 	end
 
 	def create
@@ -29,19 +26,16 @@ class SubscriptionsController < ApplicationController
 			end
 		end
 
-		# TODO subsciption_plan_id not being associated, problem with view
 		if @subscription.save
 			redirect_to @subscription
 		else
-			puts "NAY"
+			@eliquids = Eliquid.all
+			@subscription_plans = SubscriptionPlan.all
 			render 'new'
 		end
 	end
 
 	def edit
-	end
-
-	def newPlan
 	end
 
 	private

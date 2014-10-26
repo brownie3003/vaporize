@@ -137,9 +137,6 @@ $ ->
 			if allFlavoursPicked(user.bottles)
 				$("#showMeTheMoney").attr("disabled", false)
 
-		if $(e.target).attr('name') == 'subscription[shipping_day]'
-			$.fn.fullpage.moveSectionDown()
-
 	$("#letMePick").on 'click', ->
 		$("#preSelectedBottles").addClass("hidden")
 		$("#boxContent").removeClass("hidden")
@@ -153,6 +150,6 @@ $ ->
 		showSubscription()
 		$.fn.fullpage.moveSectionDown()
 
-	$("#signUpButton, #enterAddress, #selectShippingDay").on 'click', (e) ->
+	$("#signUpButton, #enterAddress, #selectShippingDay, #enterCardDetails").on 'click', (e) ->
 		e.preventDefault()
 		$.fn.fullpage.moveSectionDown()

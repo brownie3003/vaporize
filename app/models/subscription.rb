@@ -1,7 +1,10 @@
 class Subscription < ActiveRecord::Base
-    # TODO add validations.
+    # TODO add validations
     # Can't validate against subscription_choices because view has loads of
     # blank ones, so deal with thos in controller
+
+    validates :first_name, :last_name, :email, :subscription_plan_id,
+        :initial_ecigarette, :shipping_day, presence: true
 
     has_many :subscription_choices
     has_many :eliquids, through: :subscription_choices
