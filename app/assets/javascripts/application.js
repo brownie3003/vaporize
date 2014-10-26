@@ -15,4 +15,4 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require bootstrap-sprockets
-//= require fullpage.js/jquery.fullPage.min
+//= require jquery.fullPage.js
