@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140920203049) do
+ActiveRecord::Schema.define(version: 20141101162721) do
 
   create_table "addresses", force: true do |t|
     t.string   "house_number"
@@ -51,6 +51,8 @@ ActiveRecord::Schema.define(version: 20140920203049) do
     t.integer  "ecigarette_cost"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "bottle_count_description"
+    t.string   "equivalent_cigarettes_description"
   end
 
   create_table "subscriptions", force: true do |t|

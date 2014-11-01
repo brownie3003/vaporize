@@ -21,10 +21,10 @@
                     p You need to answer earlier questions first.
                 .question#dailyCigarettes.hidden
                     h3 How many cigarettes do you smoke a day?
-                    = subscription_form.select(:subscription_plan_id, options_from_collection_for_select_with_attributes(@subscription_plans, "id", "name", {bottles: "eliquid_count", price: "interval_cost"} ), {prompt: "Please select"}, {class: "form-control subscription-plan-select"})
+                    = subscription_form.select(:subscription_plan_id, options_from_collection_for_select_with_attributes(@subscription_plans, "id", "equivalent_cigarettes_description", {bottles: "eliquid_count", price: "interval_cost"} ), {prompt: "Please select"}, {class: "form-control subscription-plan-select"})
                 .question#subscriptionLevel.hidden
                     h3 Pick you subscription level.
-                    = subscription_form.select(:subscription_plan_id, options_from_collection_for_select_with_attributes(@subscription_plans, "id", "name", {bottles: "eliquid_count", price: "interval_cost"} ), {prompt: "Please select"}, {class: "form-control subscription-plan-select"})
+                    = subscription_form.select(:subscription_plan_id, options_from_collection_for_select_with_attributes(@subscription_plans, "id", "bottle_count_description", {bottles: "eliquid_count", price: "interval_cost"} ), {prompt: "Please select"}, {class: "form-control subscription-plan-select"})
 
         .section
             .container
@@ -99,27 +99,6 @@
                     .form-group
                         = subscription_form.select :shipping_day, options_for_select(1..31), class: "form-control"
                     button.btn.btn-lg.btn-primary#enterCardDetails Enter Card Details
-
-                    / h2 Subscription Summary
-                    / p
-                    /     = @subscription.subscription_plan.eliquid_count
-                    /     | x10ml bottles
-                    / p
-                    /     | £
-                    /     = @subscription.subscription_plan.interval_cost
-                    /     |  per month
-                    / - if @subscription.initial_ecigarette
-                    /     p
-                    /         | An e-cigarette kit will be included in your first subscription (£25)
-                    /     h3
-                    /         | You will be charged £
-                    /         = @subscription.subscription_plan.interval_cost + 25
-                    /         |  today.
-                    / - else
-                    /     h3
-                    /         | You will be charged £
-                    /         = @subscription.subscription_plan.interval_cost
-                    /         |  today.
 
         .section
             .container
