@@ -104,17 +104,16 @@
             .container
                 .col-sm-4.col-sm-offset-4
                     h2 Payment Details
+                    span.payment-errors
                     .form-group
-                        input.form-control type='text' placeholder='Card Number*' id='stripe-card-number'
+                        input.form-control type='text' placeholder='Card Number*' data-stripe='number' size="20"
                     .form-group
-                        input.form-control type='text' placeholder='CVC*' id='stripe-cvc'
+                        input.form-control type='text' placeholder='CVC*' data-stripe='cvc' size="4"
                     .form-group
-                        input.form-control type='text' placeholder='Expiry Month (MM)*' id='stripe-exp-month'
+                        input.form-control type='text' placeholder='Expiry Month (MM)*' data-stripe='exp-month' size="2"
                     .form-group
-                        input.form-control type='text' placeholder='Expiry Year (YYYY)*' id='stripe-exp-year'
-                    .form-group
-                        input.form-control type='hidden' name='stripe_token' id='stripe-token'
+                        input.form-control type='text' placeholder='Expiry Year (YYYY)*' data-stripe='exp-year' size="4"
 
                     = subscription_form.submit "Pay", class: "btn btn-default btn-lg"
 
-    script src='https://js.stripe.com/v1/'
+    script src='https://js.stripe.com/v2/'

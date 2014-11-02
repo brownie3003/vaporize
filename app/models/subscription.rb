@@ -1,4 +1,6 @@
 class Subscription < ActiveRecord::Base
+    after_create :create_stripe_customer
+    
     # TODO add validations
     # Can't validate against subscription_choices because view has loads of
     # blank ones, so deal with thos in controller
@@ -15,4 +17,15 @@ class Subscription < ActiveRecord::Base
     # :subscription_choices currently not required because not nesting
     # in view: subscriptions/new.html.slim
     # accepts_nested_attributes_for :subscription_choices, allow_destroy: true
+    
+    def create_stripe_customer
+        customer = Stripe::Customer.create(
+                :card => stripe_token,
+                :plan => 3,
+                :email => email
+        )
+        
+        self.stripe_token = customer.id
+        save!
+    end
 end

@@ -19,12 +19,13 @@ class SubscriptionsController < ApplicationController
 		# form_for correctly in the view.
 		params[:subscription_choices].each do |eliquid_id|
 			# Deal with all blank flavour selects
-			if eliquid_id == ""
-				next
-			else
+			if eliquid_id != ""
 				@subscription.subscription_choices.build(eliquid_id: eliquid_id)
 			end
 		end
+		
+		# Set stripe token
+		@subscription.stripe_token = params[:stripeToken]
 
 		if @subscription.save
 			redirect_to @subscription

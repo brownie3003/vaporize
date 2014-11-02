@@ -1,5 +1,14 @@
 .container style="padding-top: 60px;"
     h1 Show me the subscription
-    p = @subscription.id
-    p = @subscription.subscription_plan_id
-    p = @subscription.first_name
+    p 
+        | Subscription ID:  
+        = @subscription.id
+    p 
+        | Subscription Plan ID: 
+        = @subscription.subscription_plan_id
+    p 
+        | First Name: 
+        = @subscription.first_name
+    p
+        | Stripe Token:
+        = @subscription.stripe_token

@@ -16,3 +16,4 @@
 //= require jquery-ui
 //= require bootstrap-sprockets
 //= require jquery.fullPage.js
+//= require stripe
