@@ -20,12 +20,22 @@ class Subscription < ActiveRecord::Base
     
     def create_stripe_customer
         customer = Stripe::Customer.create(
-                :card => stripe_token,
-                :plan => 3,
-                :email => email
+                card: stripe_token,
+                email: email
         )
         
-        self.stripe_token = customer.id
+        self.stripe_customer_id = customer.id
+
+        if initial_ecigarette
+            Stripe::InvoiceItem.create(
+                customer: customer,
+                amount: 2500,
+                currency: "gbp",
+                description: "E-cigarette kit cost"
+            )
+        end
+        
+        customer.subscriptions.create(plan: self.subscription_plan.stripe_plan_id)
         save!
     end
 end
