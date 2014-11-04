@@ -9,3 +9,5 @@ Rails.application.config.assets.version = '1.0'
 %w( homepage subscriptions ).each do |controller|
 	Rails.application.config.assets.precompile += ["#{controller}.js"]
 end
+
+Rails.application.config.assets.precompile += ["stripe.js"]
