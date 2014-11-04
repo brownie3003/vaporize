@@ -18,11 +18,17 @@ class Subscription < ActiveRecord::Base
     # accepts_nested_attributes_for :subscription_choices, allow_destroy: true
     
     def create_stripe_customer
+        puts "Stripe Token:"
+        puts stripe_token
+
         customer = Stripe::Customer.create(
                 card: stripe_token,
                 email: email
         )
         
+        puts "Customer:"
+        puts customer
+
         self.stripe_customer_id = customer.id
 
         if initial_ecigarette

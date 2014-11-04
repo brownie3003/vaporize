@@ -25,6 +25,7 @@ class SubscriptionsController < ApplicationController
 		end
 		
 		# Set stripe token
+		# NB stripe_token is 1 time use only, maybe shouldn't save, should check if it's still in params on model file.
 		@subscription.stripe_token = params[:stripeToken]
 
 		if @subscription.save
