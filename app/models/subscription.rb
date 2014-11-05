@@ -62,7 +62,7 @@ class Subscription < ActiveRecord::Base
 				],
 		}
 
-		mandrill = Mandrill::API.new '0MSZNLDcRKEqx2gbYPmJeQ'
+		mandrill = Mandrill::API.new ENV['MANDRILL_API']
 		sending = mandrill.messages.send_template('signup confirmation', [], message = message)
 		
 		Rails.logger.info sending
