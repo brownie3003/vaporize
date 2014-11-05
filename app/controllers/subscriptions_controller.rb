@@ -1,6 +1,5 @@
 class SubscriptionsController < ApplicationController
 	
-	before
 
 	def show
 		@subscription = Subscription.find(params[:id])
