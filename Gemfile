@@ -60,3 +60,5 @@ gem 'jquery-turbolinks', '2.0.2'
 gem 'jquery-ui-rails'
 
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+
+gem 'mandrill-api', '1.0.53'
