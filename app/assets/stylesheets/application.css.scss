@@ -12,7 +12,7 @@
 body {
     font-family: 'Raleway', sans-serif;
     font-weight: 400;
-    font-size: 18px;
+    font-size: 15px;
 }
 
 h1 {
@@ -32,4 +32,9 @@ footer {
 
 #fullPage {
     text-align: center;
+}
+
+.homepage-container {
+    display: table-cell;
+    padding-top: 60px;
 }

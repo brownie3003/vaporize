@@ -1,44 +1,48 @@
 doctype html
 html
-        head
-            title Vaporize
-            = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-            = csrf_meta_tags
-        body
-            header
-                .navbar.navbar-default.navbar-fixed-top
-                    .container
-                        .navbar-header
-                            a.navbar-brand href="/"  Luxiat
-                            button.navbar-toggle data-target="#navbar-main" data-toggle="collapse" type="button"
-                                span.icon-bar
-                                span.icon-bar
-                                span.icon-bar
-                        #navbar-main.navbar-collapse.collapse
-                            ul#menu.nav.navbar-nav.navbar-right
-                                li.active
-                                    = link_to "Sign up", new_subscription_path
-                                - if current_page? root_path
-                                    li data-menuanchor="eCigarettes"
-                                        a href="#eCigarettes"  E-Cigarettes
-                                    li data-menuanchor="eLiquids"
-                                        a href="#eLiquids"  E-Liquids
-                                    li data-menuanchor="pricing"
-                                        a href="#pricing"  Pricing & Delivery
-                                - if logged_in?
-                                    li
-                                        = link_to "Log out", logout_path, method: :delete
-                                - else
-                                    li
-                                        = link_to "Manage Subscription", login_path
-            - flash.each do |message_type, message|
-                .alert class="alert-#{message_type}" style="padding-top:60px;"
-                    = message
-            = yield
+		head
+			title Vaporize
+			= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+			= csrf_meta_tags
+		body
+			header
+				.navbar.navbar-default.navbar-fixed-top
+					.container
+						.navbar-header
+							a.navbar-brand href="/"  Luxate
+							button.navbar-toggle data-target="#navbar-main" data-toggle="collapse" type="button"
+								span.icon-bar
+								span.icon-bar
+								span.icon-bar
+						#navbar-main.navbar-collapse.collapse
+							ul#menu.nav.navbar-nav.navbar-right
+								- if logged_in?
+									li
+										= link_to "My Subscription", current_subscription
+								- else
+									li
+										= link_to "Sign up", new_subscription_path
+								- if current_page? root_path
+									li data-menuanchor="eCigarettes"
+										a href="#eCigarettes"  E-Cigarettes
+									li data-menuanchor="eLiquids"
+										a href="#eLiquids"  E-Liquids
+									li data-menuanchor="pricing"
+										a href="#pricing"  Pricing & Delivery
+								- if logged_in?
+									li
+										= link_to "Log out", logout_path, method: :delete
+								- else
+									li
+										= link_to "Manage Subscription", login_path
+			- flash.each do |message_type, message|
+				.alert class="alert-#{message_type}" style="padding-top:60px;"
+					= message
+			= yield
 
-            footer
-                small Hello Footer
-            = debug(params) if Rails.env.development?
+			footer
+				small Hello Footer
+			= debug(params) if Rails.env.development?
 
-            script src='https://js.stripe.com/v1/'
-            = javascript_include_tag 'application', params[:controller], 'data-turbolinks-track' => true
+			script src='https://js.stripe.com/v1/'
+			= javascript_include_tag 'application', params[:controller], 'data-turbolinks-track' => true

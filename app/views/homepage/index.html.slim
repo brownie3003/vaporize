@@ -1,50 +1,58 @@
 #fullPage
-    .section
-        = video_tag ("smoke.mp4"), id: "bgVid", loop: true
+	.section
+		= video_tag ("smoke.mp4"), id: "bgVid", loop: true
 
-        .hero-message
-            h1 E-cigarette subscriptions
-            p Your monthly supply of all you need to start using e-cigarettes.
-            p
-            = link_to "Get Started", new_subscription_path, class:"btn btn-lg btn-default"
-    .section
-        .container
-            .col-xs-7
-                = image_tag "e-go.jpg", class: "homepage-image"
-            .col-xs-5
-                h2 E-Cigarettes
-                p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec sem vel lorem consequat malesuada a vel risus. Morbi interdum varius massa, nec maximus ante varius non. Curabitur lectus metus, varius vitae orci tincidunt, sagittis hendrerit dui. Quisque eget purus ut justo interdum bibendum sit amet sed nunc. Vivamus id faucibus justo, ut euismod est. Quisque lacinia eros turpis, vel finibus augue porttitor et. Cras efficitur urna tellus, sed efficitur dolor placerat at. Proin et lacinia massa. Vestibulum consequat congue sem, id consectetur magna tristique id. Suspendisse potenti. Sed a nulla ut erat vestibulum gravida sed vel dui. Duis cursus congue malesuada. Integer sed justo nec augue fringilla hendrerit. Pellentesque eget ornare elit, id suscipit arcu. Mauris quam neque, varius et vehicula vitae, maximus at sem.
+		.hero-message
+			h1 E-cigarette subscriptions
+			p Your monthly supply of all you need to start using e-cigarettes.
+			p
+			= link_to "Get Started", new_subscription_path, class:"btn btn-lg btn-default"
+	.section
+		.container
+			.homepage-container
+				.col-sm-5
+					= image_tag "e-go.jpg", class: "homepage-image"
+				.col-sm-7
+					h2 E-Cigarettes
+					p 
+						| An e-cigarette is a device used to turn e-liquid into a vapour which can be inhaled. 
+						| E-cigarettes consist of batteries and vaporizers.
+						| There are a lot of different types of vaporizers and batteries available. 
+						| We 
+	.section
+		.container
+			.homepage-container
+				.col-sm-7
+					h2 E-Liquid
+					p 
+				.col-sm-5
+					= image_tag "e-liquid.jpg", class: "homepage-image"
 
-    .section
-        .container
-            .col-xs-5
-                h2 E-Liquid
-                p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec sem vel lorem consequat malesuada a vel risus. Morbi interdum varius massa, nec maximus ante varius non. Curabitur lectus metus, varius vitae orci tincidunt, sagittis hendrerit dui. Quisque eget purus ut justo interdum bibendum sit amet sed nunc. Vivamus id faucibus justo, ut euismod est. Quisque lacinia eros turpis, vel finibus augue porttitor et. Cras efficitur urna tellus, sed efficitur dolor placerat at. Proin et lacinia massa. Vestibulum consequat congue sem, id consectetur magna tristique id. Suspendisse potenti. Sed a nulla ut erat vestibulum gravida sed vel dui. Duis cursus congue malesuada. Integer sed justo nec augue fringilla hendrerit. Pellentesque eget ornare elit, id suscipit arcu. Mauris quam neque, varius et vehicula vitae, maximus at sem.
-            .col-xs-7
-                = image_tag "e-liquid.jpg", class: "homepage-image"
-
-    .section
-        .container
-            .col-sm-8.col-sm-offset-2
-                h2 Pricing
-                p
-                    | Pricing is based on the number of e-liquid bottles you get per month. If you don't know how
-                    | many bottles you will need, don't worry, we'll help you during our
-                    = link_to "sign up process", new_subscription_path
-                    | .
-                p
-                table.table.table-bordered
-                    tr
-                        td Bottles
-                        td 3
-                        td 4
-                        td 5
-                    tr
-                        td Price
-                        td £12
-                        td £15
-                        td £18
-                h2 Delivery
-                ul.list-unstyled
-                    li Free
-                    li Small enough to fit through your letter box
+	.section
+		.container
+			.homepage-container
+				.col-sm-8.col-sm-offset-2
+					h2 Pricing
+					p
+						| Pricing is based on the number of e-liquid bottles you get per month. If you don't know how 
+						| many bottles you will need, don't worry, we'll help you figure it out during our 
+						= link_to "sign up process", new_subscription_path
+						| .
+					p
+					table.table.table-bordered
+						tr
+							td Bottles
+							td 3
+							td 4
+							td 5
+						tr
+							td Price
+							td £12
+							td £15
+							td £18
+					h2 E-Cigarettes
+					p Our e-cigarette starter kits are priced at £25.
+					h2 Delivery
+					ul.list-unstyled
+						li Free
+						li Small enough to fit through your letter box

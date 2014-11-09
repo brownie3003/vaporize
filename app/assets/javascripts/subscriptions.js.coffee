@@ -38,39 +38,50 @@ $ ->
 		$("#signUpTip").addClass("hidden")
 		return true
 
-	# Show the flavour picker for the correct number of bottles
-	showFlavourPicker = (numberOfBottles) ->
-		for i in [3..5]
-			if i == numberOfBottles
-				$(".e-liquid-box-" + i).removeClass("hidden")
-			else
-				$(".e-liquid-box-" + i).addClass("hidden")
+	# Setup flavour picker for the correct number of bottles
+	setupFlavourPicker = (numberOfBottles) ->
+		subscriptionId = $(".e-liquid-bottle").find("select").attr("id")
+		eLiquidBottle = $('.e-liquid-bottle')
+		eLiquidBottle.find('select').attr('id', subscriptionId + "1")
+		
+		for i in [2..numberOfBottles]
+			clone = eLiquidBottle.clone()
+			clone.find('select').attr('id', subscriptionId + i)
+			if numberOfBottles == 4
+				$(".e-liquid-bottle").removeClass("col-xs-4").addClass("col-xs-3")
+			if numberOfBottles == 5
+				if i == 4
+					clone.removeClass('col-xs-4').addClass('col-xs-4 col-xs-offset-2')
+			clone.appendTo('#subscriptionBox')
+			
+	showFlavourPicker = () ->
+		$('#boxContent').removeClass('hidden')
 
 	# Fill flavours with set picks
 	autoPickFlavours = (numberOfBottles) ->
 		# Get all the bottles in our specified box, e.g. 3, 4, 5
 		bottles = $(".e-liquid-box-" + numberOfBottles)
 
-		# For each bottle we're going to set the value of the select
-		# Key:
+		# For each bottle we're going to set the value of the select on the ID 'algorith' ;-)
 		# 1 = tabacco, 2 = menthol, 3 = blueberry (liable to change)
-		# Very hacky but quick
-		for bottle, index in bottles
-			switch index
-				when 0 then $(bottle).find("select").val("1")
-				when 1 then $(bottle).find("select").val("2")
-				when 2 then $(bottle).find("select").val("3")
-				when 3 then $(bottle).find("select").val("1")
-				when 4 then $(bottle).find("select").val("3")
+		for i in [1..numberOfBottles]
+			if i >= 4
+				$('#subscription_choices_' + i).val(1)
+			else
+				$('#subscription_choices_' + i).val(i)
 
 	resetFlavoursPicker = ->
+		eLiquidBottle = $('.e-liquid-bottle').first()
+		
 		$("#preSelectedBottles").addClass("hidden")
-		$("#boxContent, [class*='e-liquid-box-']").addClass("hidden")
+		$("#boxContent").addClass("hidden")
 		$("#flavoursTip").removeClass("hidden")
 
-		# Will clear any selected option ensuring we get the correct options
-		# submitted to our controller
-		$(".flavour-select").children().removeAttr("selected")
+		$('.e-liquid-bottle').remove()
+		eLiquidBottle.appendTo('#subscriptionBox')
+		eLiquidBottle.find('select').attr('id', 'subscription_choices_')
+		if eLiquidBottle.hasClass('col-xs-3')
+			eLiquidBottle.removeClass('col-xs-3').addClass('col-xs-4') 
 
 	### Hide stuff on load ###
 	$("#showMeTheMoney, #signUpButton").attr("disabled", true)
@@ -107,6 +118,8 @@ $ ->
 		# How much e-liquid do you want?
 		if $(e.target).attr('name') == "subscription[subscription_plan_id]"
 			resetFlavoursPicker()
+			
+			$('#showMeTheMoney').attr('disabled', false)
 
 			# TODO be less shit.
 			# Because of hackery, rails will only pull out the second select
@@ -120,7 +133,8 @@ $ ->
 			$("#flavours").removeClass("hidden")
 			$("#flavoursTip").addClass("hidden")
 			$(".subscription-offer").addClass("hidden")
-			$("#showMeTheMoney").attr("disabled", true)
+			
+			setupFlavourPicker(user.bottles)
 
 			if user.ecigarette == "true"
 				$("#preSelectedBottles").removeClass("hidden")
@@ -129,7 +143,7 @@ $ ->
 				$("#showMeTheMoney").attr("disabled", false)
 			else #Show the flavour picker.
 				$("#boxContent").removeClass("hidden")
-				showFlavourPicker(user.bottles)
+				showFlavourPicker()
 
 			$.fn.fullpage.moveSectionDown()
 
@@ -140,7 +154,7 @@ $ ->
 	$("#letMePick").on 'click', ->
 		$("#preSelectedBottles").addClass("hidden")
 		$("#boxContent").removeClass("hidden")
-		showFlavourPicker(user.bottles)
+		showFlavourPicker()
 
 	$("#showMeTheMoney").on 'click', (e) ->
 		e.preventDefault()

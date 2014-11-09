@@ -1,119 +1,123 @@
 .container#fullPage
-    = form_for @subscription, html: {role: "form", id: "subscriptionForm"} do |subscription_form|
-        .section
-            .container
-                = render 'partials/error_messages'
+	= form_for @subscription, html: {role: "form", id: "subscriptionForm"} do |subscription_form|
+		.section
+			.container
+				= render 'partials/error_messages'
 
-                h2 E-Cigarette
-                .question
-                    h3 Do you require an e-cigarette?
-                    .radio
-                        = subscription_form.radio_button(:initial_ecigarette, "true")
-                        = subscription_form.label(:initial_ecigarette, "Yes")
-                    .radio
-                        = subscription_form.radio_button(:initial_ecigarette, "false")
-                        = subscription_form.label(:initial_ecigarette, "No I already have my own e-cigarette. I just require e-liquid.")
+				h2 E-Cigarette
+				.question
+					h3 Do you require an e-cigarette?
+					.radio
+						= subscription_form.radio_button(:initial_ecigarette, "true")
+						= subscription_form.label(:initial_ecigarette, "Yes")
+					.radio
+						= subscription_form.radio_button(:initial_ecigarette, "false")
+						= subscription_form.label(:initial_ecigarette, "No I already have my own e-cigarette. I just require e-liquid.")
 
-        .section
-            .container
-                h2 Quantity of E-Liquid
-                .tip#quantityTip
-                    p You need to answer earlier questions first.
-                .question#dailyCigarettes.hidden
-                    h3 How many cigarettes do you smoke a day?
-                    = subscription_form.select(:subscription_plan_id, options_from_collection_for_select_with_attributes(@subscription_plans, "id", "equivalent_cigarettes_description", {bottles: "eliquid_count", price: "interval_cost"} ), {prompt: "Please select"}, {class: "form-control subscription-plan-select"})
-                .question#subscriptionLevel.hidden
-                    h3 Pick you subscription level.
-                    = subscription_form.select(:subscription_plan_id, options_from_collection_for_select_with_attributes(@subscription_plans, "id", "bottle_count_description", {bottles: "eliquid_count", price: "interval_cost"} ), {prompt: "Please select"}, {class: "form-control subscription-plan-select"})
+		.section
+			.container
+				.col-sm-6.col-sm-offset-3
+					h2 Quantity of E-Liquid
+					.tip#quantityTip
+						p You need to answer earlier questions first.
+					.question#dailyCigarettes.hidden
+						h3 How many cigarettes do you smoke a day?
+						= subscription_form.select(:subscription_plan_id, options_from_collection_for_select_with_attributes(@subscription_plans, "id", "equivalent_cigarettes_description", {bottles: "eliquid_count", price: "interval_cost"} ), {prompt: "Please select"}, {class: "form-control subscription-plan-select"})
+					.question#subscriptionLevel.hidden
+						h3 Pick you subscription level.
+						= subscription_form.select(:subscription_plan_id, options_from_collection_for_select_with_attributes(@subscription_plans, "id", "bottle_count_description", {bottles: "eliquid_count", price: "interval_cost"} ), {prompt: "Please select"}, {class: "form-control subscription-plan-select"})
 
-        .section
-            .container
-                h2 Flavours
-                .tip#flavoursTip
-                    p You need to answer earlier questions first.
-                .question#preSelectedBottles.hidden
-                    h4#bottleCount
-                    p
-                        | We've gone ahead and picked you out a selection of fantastic flavours to try. Don't worry
-                        | you can change your flavours next month. Or if you want to select your own flavours,
-                        a#letMePick click here.
+		.section
+			.container
+				h2 Flavours
+				.tip#flavoursTip
+					p You need to answer earlier questions first.
+				.question#preSelectedBottles.hidden
+					h4#bottleCount
+					p
+						| We've gone ahead and picked you out a selection of fantastic flavours to try. Don't worry
+						| you can change your flavours next month. Or if you want to select your own flavours,
+						a#letMePick click here.
 
-                .question#boxContent.hidden
-                    h3 Select your flavours
+				.question#boxContent.hidden
+					h3 Select your flavours
 
-                = render "partials/eLiquidBox"
+					#subscriptionBox.row
+						.col-xs-4.e-liquid-bottle
+							= image_tag("eliquid.svg")
+							= select_tag("subscription_choices[]", options_from_collection_for_select(@eliquids, 'id', 'name'), { class: "form-control flavour-select" })
 
-                .col-xs-12
-                    button.btn.btn-lg.btn-primary#showMeTheMoney Check out your subscription
+				.row.col-xs-12
+					button.btn.btn-lg.btn-primary#showMeTheMoney Check out your subscription
 
-        .section
-            .container
-                .col-xs-8.col-xs-offset-2.one-month
-                    h2 Price
-                    .tip#signUpTip
-                        p Answer all the questions to get a subscription price
-                    .subscription-offer.hidden
-                        h3.price
-                        h3.cigarette-offer
-                        p.pricing-explanation
-                        button.btn.btn-lg.btn-primary#signUpButton Sign up
-                        h4 Delivery is free.
-                        h4 You can cancel your subscription at any time.
+		.section
+			.container
+				.col-xs-8.col-xs-offset-2.one-month
+					h2 Price
+					.tip#signUpTip
+						p Answer all the questions to get a subscription price
+					.subscription-offer.hidden
+						h3.price
+						h3.cigarette-offer
+						p.pricing-explanation
+						button.btn.btn-lg.btn-primary#signUpButton Sign up
+						h4 Delivery is free.
+						h4 You can cancel your subscription at any time.
 
-        .section
-            .container
-                .col-sm-4.col-sm-offset-4
-                    h2 Personal Details
-                    .form-group
-                        = subscription_form.text_field :first_name, placeholder: "First name*", class: "form-control"
-                    .form-group
-                        = subscription_form.text_field :last_name, placeholder: "Last name*", class: "form-control"
-                    .form-group
-                        = subscription_form.email_field :email, placeholder: "Email address*", class: "form-control"
-                    button.btn.btn-lg.btn-primary#enterAddress Enter Address
+		.section
+			.container
+				.col-sm-6.col-sm-offset-3
+					h2 Personal Details
+					.form-group
+						= subscription_form.text_field :first_name, placeholder: "First name*", class: "form-control"
+					.form-group
+						= subscription_form.text_field :last_name, placeholder: "Last name*", class: "form-control"
+					.form-group
+						= subscription_form.email_field :email, placeholder: "Email address*", class: "form-control"
+					button.btn.btn-lg.btn-primary#enterAddress Enter Address
 
-        .section
-            .container
-                .col-sm-4.col-sm-offset-4
-                    = subscription_form.fields_for :address, Address.new do |address_form|
-                        h2 Address
-                        .form-group
-                            = address_form.text_field :house_number, placeholder: "House/Flat no.*", class: "form-control"
-                        .form-group
-                            = address_form.text_field :street, placeholder: "Street*", class: "form-control"
-                        .form-group
-                            = address_form.text_field :second_line, placeholder: "Second line", class: "form-control"
-                        .form-group
-                            = address_form.text_field :city, placeholder: "City*", class: "form-control"
-                        .form-group
-                            = address_form.text_field :county, placeholder: "County", class: "form-control"
-                        .form-group
-                            = address_form.text_field :postcode, placeholder: "Postcode*", class: "form-control"
-                    button.btn.btn-lg.btn-primary#selectShippingDay Select Shipping Day
-        .section
-            .container
-                .col-sm-4.col-sm-offset-4
-                    h2 Selected Shipping Day
-                    p Which day of the month would you like us to send your subscription.
+		.section
+			.container
+				.col-sm-6.col-sm-offset-3
+					= subscription_form.fields_for :address, Address.new do |address_form|
+						h2 Address
+						.form-group
+							= address_form.text_field :house_number, placeholder: "House/Flat no.*", class: "form-control"
+						.form-group
+							= address_form.text_field :street, placeholder: "Street*", class: "form-control"
+						.form-group
+							= address_form.text_field :second_line, placeholder: "Second line", class: "form-control"
+						.form-group
+							= address_form.text_field :city, placeholder: "City*", class: "form-control"
+						.form-group
+							= address_form.text_field :county, placeholder: "County", class: "form-control"
+						.form-group
+							= address_form.text_field :postcode, placeholder: "Postcode*", class: "form-control"
+					button.btn.btn-lg.btn-primary#selectShippingDay Select Shipping Day
+		.section
+			.container
+				.col-sm-6.col-sm-offset-3
+					h2 Selected Shipping Day
+					p Which day of the month would you like us to send your subscription.
 
-                    .form-group
-                        = subscription_form.select :shipping_day, options_for_select(1..31), class: "form-control"
-                    button.btn.btn-lg.btn-primary#enterCardDetails Enter Card Details
+					.form-group
+						= subscription_form.select :shipping_day, options_for_select(1..31), class: "form-control"
+					button.btn.btn-lg.btn-primary#enterCardDetails Enter Card Details
 
-        .section
-            .container
-                .col-sm-4.col-sm-offset-4
-                    h2 Payment Details
-                    span.payment-errors
-                    .form-group
-                        input.form-control type='text' placeholder='Card Number*' data-stripe='number' size="20"
-                    .form-group
-                        input.form-control type='text' placeholder='CVC*' data-stripe='cvc' size="4"
-                    .form-group
-                        input.form-control type='text' placeholder='Expiry Month (MM)*' data-stripe='exp-month' size="2"
-                    .form-group
-                        input.form-control type='text' placeholder='Expiry Year (YYYY)*' data-stripe='exp-year' size="4"
+		.section
+			.container
+				.col-sm-6.col-sm-offset-3
+					h2 Payment Details
+					span.payment-errors
+					.form-group
+						input.form-control type='text' placeholder='Card Number*' data-stripe='number' size="20"
+					.form-group
+						input.form-control type='text' placeholder='CVC*' data-stripe='cvc' size="4"
+					.form-group
+						input.form-control type='text' placeholder='Expiry Month (MM)*' data-stripe='exp-month' size="2"
+					.form-group
+						input.form-control type='text' placeholder='Expiry Year (YYYY)*' data-stripe='exp-year' size="4"
 
-                    = subscription_form.submit "Pay", class: "btn btn-default btn-lg"
+					= subscription_form.submit "Pay", class: "btn btn-default btn-lg"
 
-    script src='https://js.stripe.com/v2/'
+	script src='https://js.stripe.com/v2/'
