@@ -6,6 +6,7 @@ class Subscription < ActiveRecord::Base
 	# blank ones, so deal with thos in controller
 
 	validates :first_name, :last_name, :email, :subscription_plan_id, :shipping_day, presence: true
+	validates :email, uniqueness: true
 
 	has_many :subscription_choices
 	has_many :eliquids, through: :subscription_choices
@@ -45,26 +46,34 @@ class Subscription < ActiveRecord::Base
 		require 'mandrill'
 
 		message = {
-				to: [
-						{
-								email: self.email,
-								name: self.first_name,
-						}
-				],
-				important: false,
-				track_opens: true,
-				track_clicks: true,
-				global_merge_vars: [
-						{
-								name: 'name',
-								content: self.first_name
-						}
-				],
+			to: [
+					{
+							email: self.email,
+							name: self.first_name,
+					}
+			],
+			important: false,
+			track_opens: true,
+			track_clicks: true,
+			global_merge_vars: [
+					{
+							name: 'name',
+							content: self.first_name
+					}
+			],
 		}
 
 		mandrill = Mandrill::API.new ENV['MANDRILL_API']
 		sending = mandrill.messages.send_template('signup confirmation', [], message = message)
 		
 		Rails.logger.info sending
+	end
+
+
+	def check_postcode(subscription, postcode)
+		if subscription.address.postcode === postcode
+			return true
+		end
+		false
 	end
 end

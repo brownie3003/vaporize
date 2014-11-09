@@ -30,6 +30,8 @@ class SubscriptionsController < ApplicationController
 		@subscription.stripe_token = params[:stripeToken]
 
 		if @subscription.save
+			log_in @subscription
+			flash[:success] = "Welcome to Luxate!"
 			redirect_to @subscription
 		else
 			@eliquids = Eliquid.all

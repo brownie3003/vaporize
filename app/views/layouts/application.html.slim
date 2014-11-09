@@ -25,9 +25,15 @@ html
                                         a href="#eLiquids"  E-Liquids
                                     li data-menuanchor="pricing"
                                         a href="#pricing"  Pricing & Delivery
-                                li
-                                    a href=""  Manage Subscription
-
+                                - if logged_in?
+                                    li
+                                        = link_to "Log out", logout_path, method: :delete
+                                - else
+                                    li
+                                        = link_to "Manage Subscription", login_path
+            - flash.each do |message_type, message|
+                .alert class="alert-#{message_type}" style="padding-top:60px;"
+                    = message
             = yield
 
             footer
