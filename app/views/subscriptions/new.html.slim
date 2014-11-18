@@ -43,7 +43,7 @@
 					h3 Select your flavours
 
 					#subscriptionBox.row
-						.col-xs-4.e-liquid-bottle
+						.col-sm-4.e-liquid-bottle
 							= image_tag("eliquid.svg")
 							= select_tag("subscription_choices[]", options_from_collection_for_select(@eliquids, 'id', 'name'), { class: "form-control flavour-select" })
 

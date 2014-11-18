@@ -4,12 +4,12 @@
 
 $ ->
 	fullPage = $("#fullPage")
-	if fullPage.length
-		fullPage.fullpage
-			verticalCentered: true
-			resize: false
-			css3: true
-			autoScrolling: false
+
+	fullPage.fullpage
+		verticalCentered: true
+		resize: false
+		css3: true
+		autoScrolling: false
 
 	# Handy little object for tracking important variables from the model
 	user = {}
@@ -48,10 +48,10 @@ $ ->
 			clone = eLiquidBottle.clone()
 			clone.find('select').attr('id', subscriptionId + i)
 			if numberOfBottles == 4
-				$(".e-liquid-bottle").removeClass("col-xs-4").addClass("col-xs-3")
+				$(".e-liquid-bottle").removeClass("col-sm-4").addClass("col-sm-3")
 			if numberOfBottles == 5
 				if i == 4
-					clone.removeClass('col-xs-4').addClass('col-xs-4 col-xs-offset-2')
+					clone.removeClass('col-sm-4').addClass('col-sm-4 col-sm-offset-2')
 			clone.appendTo('#subscriptionBox')
 			
 	showFlavourPicker = () ->
@@ -80,8 +80,8 @@ $ ->
 		$('.e-liquid-bottle').remove()
 		eLiquidBottle.appendTo('#subscriptionBox')
 		eLiquidBottle.find('select').attr('id', 'subscription_choices_')
-		if eLiquidBottle.hasClass('col-xs-3')
-			eLiquidBottle.removeClass('col-xs-3').addClass('col-xs-4') 
+		if eLiquidBottle.hasClass('col-sm-3')
+			eLiquidBottle.removeClass('col-sm-3').addClass('col-sm-4') 
 
 	### Hide stuff on load ###
 	$("#showMeTheMoney, #signUpButton").attr("disabled", true)

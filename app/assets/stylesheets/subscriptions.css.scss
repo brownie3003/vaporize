@@ -9,11 +9,15 @@
 }
 
 #boxContent {
-    img {
-        padding: 10px;
-    }
     h2 {
         padding-top: 20px;
+    }
+}
+
+.e-liquid-bottle {
+    text-align: center;
+    img {
+        padding: 10px;
     }
 }
 
@@ -27,5 +31,15 @@
 }
 
 #signUp {
+    text-align: center;
+}
+
+.address {
+    p {
+        margin: 0;
+    }
+}
+
+.subscription-summary {
     text-align: center;
 }
