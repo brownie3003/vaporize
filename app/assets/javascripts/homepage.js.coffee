@@ -12,3 +12,5 @@ $ ->
 		navigation: true
 
 	$("#bgVid").get(0).play()
+	
+	console.log("hello")
