@@ -34,6 +34,19 @@ footer {
     text-align: center;
 }
 
+body {
+    opacity: 0;
+    -webkit-transition: opacity 0.5s;
+    -moz-transition: opacity 0.5s;
+    -ms-transition: opacity 0.5s;
+    -o-transition: opacity 0.5s;
+    transition: opacity 0.5s;
+}
+
+.js body {
+    opacity: 1;
+}
+
 .homepage-container {
     display: table-cell;
     padding-top: 60px;

@@ -3,6 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $ ->
+	
 	$("#fullPage").fullpage
 		anchors: ['', 'eCigarettes', 'eLiquids', 'pricing']
 		verticalCentered: true
@@ -12,5 +13,3 @@ $ ->
 		navigation: true
 
 	$("#bgVid").get(0).play()
-	
-	console.log("hello")
