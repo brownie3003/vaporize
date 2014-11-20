@@ -8,11 +8,11 @@
 				.question
 					h3 Do you require an e-cigarette?
 					.radio
-						= subscription_form.radio_button(:initial_ecigarette, "true")
-						= subscription_form.label(:initial_ecigarette, "Yes")
+						= subscription_form.radio_button(:initial_ecigarette, true)
+						= subscription_form.label(:initial_ecigarette_true, "Yes")
 					.radio
-						= subscription_form.radio_button(:initial_ecigarette, "false")
-						= subscription_form.label(:initial_ecigarette, "No I already have my own e-cigarette. I just require e-liquid.")
+						= subscription_form.radio_button(:initial_ecigarette, false)
+						= subscription_form.label(:initial_ecigarette_false, "No I already have my own e-cigarette. I just require e-liquid.")
 
 		.section
 			.container
@@ -35,8 +35,8 @@
 				.question#preSelectedBottles.hidden
 					h4#bottleCount
 					p
-						| We've gone ahead and picked you out a selection of fantastic flavours to try. Don't worry
-						| you can change your flavours next month. Or if you want to select your own flavours,
+						| We've gone ahead and picked you out a selection of fantastic flavours to try. Don't worry,
+						|  you can change your flavours next month. Or if you want to select your own flavours, 
 						a#letMePick click here.
 
 				.question#boxContent.hidden
