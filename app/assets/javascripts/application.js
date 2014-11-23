@@ -17,3 +17,6 @@
 //= require bootstrap-sprockets
 //= require jquery.fullPage.js
 //= require stripe
+
+
+document.getElementsByTagName('html')[0].className = 'js'

@@ -3,13 +3,14 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $ ->
+	
 	fullPage = $("#fullPage")
-
-	fullPage.fullpage
-		verticalCentered: true
-		resize: false
-		css3: true
-		autoScrolling: false
+	if fullPage.length
+		fullPage.fullpage
+			verticalCentered: true
+			resize: false
+			css3: true
+			autoScrolling: false
 
 	# Handy little object for tracking important variables from the model
 	user = {}
@@ -29,66 +30,82 @@ $ ->
 											month for your e-liquid. It will be delivered through your letter box on
 											the day you choose.")
 
-	# Checks whether the number of flavours required by the subscription have been picked
-	allFlavoursPicked = (numberOfBottles) ->
-		bottles = $(".e-liquid-box-" + numberOfBottles)
-		for bottle in bottles
-			if $(bottle).find("select").val() == ""
-				return false
-		$("#signUpTip").addClass("hidden")
-		return true
+# Checks whether the number of flavours required by the subscription have been picked
+allFlavoursPicked = (numberOfBottles) ->
+	bottles = $(".e-liquid-box-" + numberOfBottles)
+	for bottle in bottles
+		if $(bottle).find("select").val() == ""
+			return false
+	$("#signUpTip").addClass("hidden")
+	return true
 
-	# Setup flavour picker for the correct number of bottles
-	setupFlavourPicker = (numberOfBottles) ->
-		subscriptionId = $(".e-liquid-bottle").find("select").attr("id")
-		eLiquidBottle = $('.e-liquid-bottle')
-		eLiquidBottle.find('select').attr('id', subscriptionId + "1")
-		
-		for i in [2..numberOfBottles]
-			clone = eLiquidBottle.clone()
-			clone.find('select').attr('id', subscriptionId + i)
-			if numberOfBottles == 4
-				$(".e-liquid-bottle").removeClass("col-sm-4").addClass("col-sm-3")
-			if numberOfBottles == 5
-				if i == 4
-					clone.removeClass('col-sm-4').addClass('col-sm-4 col-sm-offset-2')
-			clone.appendTo('#subscriptionBox')
-			
-	showFlavourPicker = () ->
-		$('#boxContent').removeClass('hidden')
+# Setup flavour picker for the correct number of bottles
+setupFlavourPicker = (numberOfBottles) ->
+	subscriptionId = $(".e-liquid-bottle").find("select").attr("id")
+	eLiquidBottle = $('.e-liquid-bottle')
+	eLiquidBottle.find('select').attr('id', subscriptionId + "1")
 
-	# Fill flavours with set picks
-	autoPickFlavours = (numberOfBottles) ->
-		# Get all the bottles in our specified box, e.g. 3, 4, 5
-		bottles = $(".e-liquid-box-" + numberOfBottles)
+	for i in [2..numberOfBottles]
+		clone = eLiquidBottle.clone()
+		clone.find('select').attr('id', subscriptionId + i)
+		if numberOfBottles == 4
+			$(".e-liquid-bottle").removeClass("col-sm-4").addClass("col-sm-3")
+		if numberOfBottles == 5
+			if i == 4
+				clone.removeClass('col-sm-4').addClass('col-sm-4 col-sm-offset-2')
+		clone.appendTo('#subscriptionBox')
 
-		# For each bottle we're going to set the value of the select on the ID 'algorith' ;-)
-		# 1 = tabacco, 2 = menthol, 3 = blueberry (liable to change)
-		for i in [1..numberOfBottles]
-			if i >= 4
-				$('#subscription_choices_' + i).val(1)
-			else
-				$('#subscription_choices_' + i).val(i)
+showFlavourPicker = () ->
+	$('#boxContent').removeClass('hidden')
 
-	resetFlavoursPicker = ->
-		eLiquidBottle = $('.e-liquid-bottle').first()
-		
-		$("#preSelectedBottles").addClass("hidden")
-		$("#boxContent").addClass("hidden")
-		$("#flavoursTip").removeClass("hidden")
+# Fill flavours with set picks
+autoPickFlavours = (numberOfBottles) ->
+	# Get all the bottles in our specified box, e.g. 3, 4, 5
+	bottles = $(".e-liquid-box-" + numberOfBottles)
 
-		$('.e-liquid-bottle').remove()
-		eLiquidBottle.appendTo('#subscriptionBox')
-		eLiquidBottle.find('select').attr('id', 'subscription_choices_')
-		if eLiquidBottle.hasClass('col-sm-3')
-			eLiquidBottle.removeClass('col-sm-3').addClass('col-sm-4') 
+	# For each bottle we're going to set the value of the select on the ID 'algorith' ;-)
+	# 1 = tabacco, 2 = menthol, 3 = blueberry (liable to change)
+	for i in [1..numberOfBottles]
+		if i >= 4
+			$('#subscription_choices_' + i).val(1)
+		else
+			$('#subscription_choices_' + i).val(i)
 
+resetFlavoursPicker = ->
+	eLiquidBottle = $('.e-liquid-bottle').first()
+
+	$("#preSelectedBottles").addClass("hidden")
+	$("#boxContent").addClass("hidden")
+	$("#flavoursTip").removeClass("hidden")
+
+	$('.e-liquid-bottle').remove()
+	eLiquidBottle.appendTo('#subscriptionBox')
+	eLiquidBottle.find('select').attr('id', 'subscription_choices_')
+	if eLiquidBottle.hasClass('col-sm-3')
+		eLiquidBottle.removeClass('col-sm-3').addClass('col-sm-4')
+
+#if $('#subscriptionBox').is(':visible')
+#	user.bottles = $('.subscription-plan-select').find(':selected').data('bottles')
+#	console.log(user.bottles)
+#	setupFlavourPicker(user.bottles)
+	
+
+
+$ ->
+
+	fullPage = $("#fullPage")
+
+	fullPage.fullpage
+		verticalCentered: true
+		resize: false
+		css3: true
+		autoScrolling: false
 	### Hide stuff on load ###
 	$("#showMeTheMoney, #signUpButton").attr("disabled", true)
 
 	### Listeners ###
 
-	# When anything changes on the form.
+	# When anything changes on the sign up form.
 	$('#subscriptionForm').on 'change', (e) ->
 		# We will check and enable this button if everything is correct at each change
 		$("#showMeTheMoney").attr("disabled", true)
@@ -167,3 +184,8 @@ $ ->
 	$("#signUpButton, #enterAddress, #selectShippingDay, #enterCardDetails").on 'click', (e) ->
 		e.preventDefault()
 		$.fn.fullpage.moveSectionDown()
+
+
+
+	$('#subscriptionEditForm').on 'load', (e) ->
+		console.log("yellow")

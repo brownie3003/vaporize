@@ -41,6 +41,9 @@ class SubscriptionsController < ApplicationController
 	end
 
 	def edit
+		@subscription = Subscription.find(params[:id])
+		@eliquids = Eliquid.all
+		@subscription_plans = SubscriptionPlan.all
 	end
 
 	private
