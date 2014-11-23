@@ -45,7 +45,10 @@
 					#subscriptionBox.row
 						.col-xs-4.e-liquid-bottle
 							= image_tag("eliquid.svg")
-							= select_tag("subscription_choices[]", options_from_collection_for_select(@eliquids, 'id', 'name'), { class: "form-control flavour-select" })
+							= subscription_form.fields_for :subscription_choices do |subscription_choices_form|
+								= subscription_choices_form.fields_for :eliquid do |eliquid_form|
+									// TODO on submission Rails will only take the final eliquid_id from the form.
+									= eliquid_form.select :id, options_from_collection_for_select(@eliquids, 'id', 'name'), {}, class: "form-control flavour-select" 
 
 				.row.col-xs-12
 					button.btn.btn-lg.btn-primary#showMeTheMoney Check out your subscription
