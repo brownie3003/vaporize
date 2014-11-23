@@ -2,31 +2,23 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-$ ->
-	
-	fullPage = $("#fullPage")
-	if fullPage.length
-		fullPage.fullpage
-			verticalCentered: true
-			resize: false
-			css3: true
-			autoScrolling: false
+# Box will only be visible on page load if we are editing a subscription, not signing up.
 
-	# Handy little object for tracking important variables from the model
-	user = {}
+# Handy little object for tracking important variables from the model
+user = {}
 
-	### Functions ###
+### Functions ###
 
-	showSubscription = ->
-		$(".price").html("£" + user.price + "/month")
-		if user.ecigarette == "true"
-			$(".cigarette-offer").html("£25 for the e-cigarette kit")
-			$(".pricing-explanation").html("Your first payment will be £" +
-					(user.price + 25) + " to pay for your e-cigarette kit. After this you will pay £" +
-					user.price + " per month.");
-		else
-			$(".cigarette-offer").html("")
-			$(".pricing-explanation").html("You will simply pay £" + user.price + " per
+showSubscription = ->
+	$(".price").html("£" + user.price + "/month")
+	if user.ecigarette == "true"
+		$(".cigarette-offer").html("£25 for the e-cigarette kit")
+		$(".pricing-explanation").html("Your first payment will be £" +
+				(user.price + 25) + " to pay for your e-cigarette kit. After this you will pay £" +
+				user.price + " per month.");
+	else
+		$(".cigarette-offer").html("")
+		$(".pricing-explanation").html("You will simply pay £" + user.price + " per
 											month for your e-liquid. It will be delivered through your letter box on
 											the day you choose.")
 
