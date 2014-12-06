@@ -1,2 +1,67 @@
-h1 Subscriptions#edit
-p Find me in app/views/subscriptions/edit.html.slim
+.container style="padding-top: 60px;"
+	h1 Edit Your Subscription
+	= form_for @subscription, html: {role: "form", id: "subscriptionEditForm"} do |subscription_form|
+		.row
+			= render 'partials/error_messages'
+			.col-sm-6.col-sm-offset-3
+				h2 Subscription Level
+				= subscription_form.select(:subscription_plan_id, options_from_collection_for_select_with_attributes(@subscription_plans, "id", "bottle_count_description", {bottles: "eliquid_count", price: "interval_cost"}, @subscription.subscription_plan.id ), {}, {class: "form-control subscription-plan-select"})
+		.row
+			.col-sm-6.col-sm-offset-3
+				h2 Subscription Cost
+				h3.subscription-price = "£#{@subscription.subscription_plan.interval_cost}"
+		#subscriptionBox.row
+			- @subscription.subscription_choices.each_with_index do |subscription_choice, index|
+				- if @subscription.subscription_choices.length == 3
+					.col-sm-4.e-liquid-bottle
+						= image_tag("eliquid.svg")
+						= select_tag("subscription_choices[]", options_from_collection_for_select(@eliquids, 'id', 'name', subscription_choice.eliquid.id), class: "form-control flavour-select")
+				- elsif @subscription.subscription_choices.length == 4
+					.col-sm-3.e-liquid-bottle
+						= image_tag("eliquid.svg")
+						= select_tag("subscription_choices[]", options_from_collection_for_select(@eliquids, 'id', 'name', subscription_choice.eliquid.id), class: "form-control flavour-select")
+				- elsif @subscription.subscription_choices.length == 5
+					- if index == 3
+						.col-sm-4.col-sm-offset-2.e-liquid-bottle
+							= image_tag("eliquid.svg")
+							= select_tag("subscription_choices[]", options_from_collection_for_select(@eliquids, 'id', 'name', subscription_choice.eliquid.id), class: "form-control flavour-select")
+					- else
+						.col-sm-4.e-liquid-bottle
+							= image_tag("eliquid.svg")
+							= select_tag("subscription_choices[]", options_from_collection_for_select(@eliquids, 'id', 'name', subscription_choice.eliquid.id), class: "form-control flavour-select")
+		.row
+			.col-sm-6.col-sm-offset-3
+				h2 Shipping Day
+
+				.form-group
+					= subscription_form.select :shipping_day, options_for_select(1..31, @subscription.shipping_day), class: "form-control"
+
+		.row
+			.col-sm-6.col-sm-offset-3
+				h2 Personal Details
+				.form-group
+					= subscription_form.text_field :first_name, placeholder: "First name*", class: "form-control"
+				.form-group
+					= subscription_form.text_field :last_name, placeholder: "Last name*", class: "form-control"
+				.form-group
+					= subscription_form.email_field :email, placeholder: "Email address*", class: "form-control"
+
+		.row
+			.col-sm-6.col-sm-offset-3
+				= subscription_form.fields_for :address, @subscription.address do |address_form|
+					h2 Address
+					.form-group
+						= address_form.text_field :house_number, placeholder: "House/Flat no.*", class: "form-control"
+					.form-group
+						= address_form.text_field :street, placeholder: "Street*", class: "form-control"
+					.form-group
+						= address_form.text_field :second_line, placeholder: "Second line", class: "form-control"
+					.form-group
+						= address_form.text_field :city, placeholder: "City*", class: "form-control"
+					.form-group
+						= address_form.text_field :county, placeholder: "County", class: "form-control"
+					.form-group
+						= address_form.text_field :postcode, placeholder: "Postcode*", class: "form-control"
+
+		.row
+			= subscription_form.submit "Save changes", class: "btn btn-default btn-lg"

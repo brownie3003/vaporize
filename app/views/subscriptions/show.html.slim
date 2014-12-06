@@ -1,14 +1,69 @@
 .container style="padding-top: 60px;"
-    h1 Show me the subscription
-    p 
-        | Subscription ID:  
-        = @subscription.id
-    p 
-        | Subscription Plan ID: 
-        = @subscription.subscription_plan_id
-    p 
-        | First Name: 
-        = @subscription.first_name
-    p
-        | Stripe Token:
-        = @subscription.stripe_token
+	.row
+		.col-sm-12.subscription-summary
+			h1 Your Subscription
+			p
+				| Subscription level: 
+				= @subscription.subscription_plan.bottle_count_description
+			p
+				| Monthly cost: £
+				= @subscription.subscription_plan.interval_cost
+
+			- @subscription.subscription_choices.each_with_index  do |choice, index|
+				- if @subscription.subscription_choices.length == 4
+					.col-sm-3.e-liquid-bottle
+						= image_tag("eliquid.svg")
+						p = choice.eliquid.name
+				- else
+					- if @subscription.subscription_choices.length == 5 && index == 3
+
+						.col-sm-4.col-sm-offset-2.e-liquid-bottle
+							= image_tag("eliquid.svg")
+							p = choice.eliquid.name
+					- else
+						.col-sm-4.e-liquid-bottle
+							= image_tag("eliquid.svg")
+							p = choice.eliquid.name
+	.row
+		.col-sm-12.subscription-summary
+			p
+				| Monthly shipping day: 
+				= @subscription.shipping_day
+
+	.row
+		.col-sm-2.col-sm-offset-5
+			h2 Delivery Address
+			.address
+				p 
+					= @subscription.first_name 
+					|  
+					= @subscription.last_name
+				p 
+					= @subscription.address.house_number
+					| ,
+				p 
+					= @subscription.address.street
+					| ,
+				- if !@subscription.address.second_line.empty?
+					p
+						= @subscription.address.second_line
+						| ,
+				p
+					= @subscription.address.city
+					| ,
+				- if !@subscription.address.county.empty?
+					p
+						= @subscription.address.county
+						| ,
+				p
+					= @subscription.address.postcode
+	.row
+		.col-sm-12.subscription-summary
+			= link_to "Edit Subscription", edit_subscription_path, class: "btn btn-lg btn-primary"
+	.row
+		.col-sm-12.subscription-summary
+			= link_to "Cancel Subscritpion", 
+			          subscription_path, 
+			          method: 'delete', 
+			          data: {confirm: 'Are you sure you want to leave us? This action can\'t be undone.'}, 
+			          class: "btn btn-lg btn-danger"
