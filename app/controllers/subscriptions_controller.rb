@@ -1,5 +1,6 @@
 class SubscriptionsController < ApplicationController
-	
+	before_action :logged_in_subscription, only: [:show, :edit, :update, :destroy]
+	before_action :correct_subscription, only: [:show, :edit, :update, :destroy]
 
 	def show
 		@subscription = Subscription.find(params[:id])
@@ -87,8 +88,17 @@ class SubscriptionsController < ApplicationController
 				@subscription.subscription_choices.create(eliquid_id: eliquid_id)
 			end
 		end
-	
-		def remove_subscription_choices
-			@subscription.subscription_choices
+
+		def logged_in_subscription
+			unless logged_in?
+				flash[:danger] = "Please log in."
+				redirect_to login_url
+			end
 		end
+
+		def correct_subscription
+			@subscription = Subscription.find(params[:id])
+			redirect_to(root_url) unless @subscription == current_subscription
+		end
+	
 end

@@ -35,9 +35,11 @@ html
 								- else
 									li
 										= link_to "Manage Subscription", login_path
-			- flash.each do |message_type, message|
-				.alert class="alert-#{message_type}" style="padding-top:60px;"
-					= message
+			.row
+				.col-xs-6.col-xs-offset-3
+					- flash.each do |message_type, message|
+						.alert class="alert-#{message_type}" style="padding-top:60px;"
+							= message
 			= yield
 
 			footer
