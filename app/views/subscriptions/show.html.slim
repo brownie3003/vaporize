@@ -29,9 +29,6 @@
 			p
 				| Monthly shipping day: 
 				= @subscription.shipping_day
-	.row
-		.col-sm-12.subscription-summary
-			button Edit Subscription
 
 	.row
 		.col-sm-2.col-sm-offset-5
@@ -62,4 +59,11 @@
 					= @subscription.address.postcode
 	.row
 		.col-sm-12.subscription-summary
-			button Edit Delivery Address
+			= link_to "Edit Subscription", edit_subscription_path, class: "btn btn-lg btn-primary"
+	.row
+		.col-sm-12.subscription-summary
+			= link_to "Cancel Subscritpion", 
+			          subscription_path, 
+			          method: 'delete', 
+			          data: {confirm: 'Are you sure you want to leave us? This action can\'t be undone.'}, 
+			          class: "btn btn-lg btn-danger"

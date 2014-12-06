@@ -32,52 +32,56 @@ allFlavoursPicked = (numberOfBottles) ->
 	return true
 
 # Setup flavour picker for the correct number of bottles
-setupFlavourPicker = (numberOfBottles) ->
+setupFlavourPicker = (numberOfBottles, userChoices) ->
 	subscriptionId = $(".e-liquid-bottle").find("select").attr("id")
-	eLiquidBottle = $('.e-liquid-bottle')
-	eLiquidBottle.find('select').attr('id', subscriptionId + "1")
+	eLiquidBottle = $(".e-liquid-bottle")
+	eLiquidBottle.find("select").attr("id", subscriptionId + "1")
 
 	for i in [2..numberOfBottles]
 		clone = eLiquidBottle.clone()
-		clone.find('select').attr('id', subscriptionId + i)
+		clone.find("select").attr("id", subscriptionId + i)
 		if numberOfBottles == 4
 			$(".e-liquid-bottle").removeClass("col-sm-4").addClass("col-sm-3")
 		if numberOfBottles == 5
 			if i == 4
-				clone.removeClass('col-sm-4').addClass('col-sm-4 col-sm-offset-2')
-		clone.appendTo('#subscriptionBox')
+				clone.removeClass("col-sm-4").addClass("col-sm-4 col-sm-offset-2")
+		clone.appendTo("#subscriptionBox")
+		
+	if userChoices
+		for choice, i in userChoices
+			$("#subscription_choices_" + (i + 1)).val(choice)
 
 showFlavourPicker = () ->
-	$('#boxContent').removeClass('hidden')
+	$("#boxContent").removeClass("hidden")
 
 # Fill flavours with set picks
 autoPickFlavours = (numberOfBottles) ->
 	# Get all the bottles in our specified box, e.g. 3, 4, 5
 	bottles = $(".e-liquid-box-" + numberOfBottles)
 
-	# For each bottle we're going to set the value of the select on the ID 'algorith' ;-)
+	# For each bottle we"re going to set the value of the select on the ID "algorithm" ;-)
 	# 1 = tabacco, 2 = menthol, 3 = blueberry (liable to change)
 	for i in [1..numberOfBottles]
 		if i >= 4
-			$('#subscription_choices_' + i).val(1)
+			$("#subscription_choices_" + i).val(1)
 		else
-			$('#subscription_choices_' + i).val(i)
+			$("#subscription_choices_" + i).val(i)
 
 resetFlavoursPicker = ->
-	eLiquidBottle = $('.e-liquid-bottle').first()
+	eLiquidBottle = $(".e-liquid-bottle").first()
 
 	$("#preSelectedBottles").addClass("hidden")
 	$("#boxContent").addClass("hidden")
 	$("#flavoursTip").removeClass("hidden")
 
-	$('.e-liquid-bottle').remove()
-	eLiquidBottle.appendTo('#subscriptionBox')
-	eLiquidBottle.find('select').attr('id', 'subscription_choices_')
-	if eLiquidBottle.hasClass('col-sm-3')
-		eLiquidBottle.removeClass('col-sm-3').addClass('col-sm-4')
+	$(".e-liquid-bottle").remove()
+	eLiquidBottle.appendTo("#subscriptionBox")
+	eLiquidBottle.find("select").attr("id", "subscription_choices_")
+	if eLiquidBottle.hasClass("col-sm-3")
+		eLiquidBottle.removeClass("col-sm-3").addClass("col-sm-4")
 
-#if $('#subscriptionBox').is(':visible')
-#	user.bottles = $('.subscription-plan-select').find(':selected').data('bottles')
+#if $("#subscriptionBox").is(":visible")
+#	user.bottles = $(".subscription-plan-select").find(":selected").data("bottles")
 #	console.log(user.bottles)
 #	setupFlavourPicker(user.bottles)
 	
@@ -87,25 +91,30 @@ $ ->
 
 	fullPage = $("#fullPage")
 
-	fullPage.fullpage
-		verticalCentered: true
-		resize: false
-		css3: true
-		autoScrolling: false
+	if fullPage.length
+		fullPage.fullpage
+			verticalCentered: true
+			resize: false
+			css3: true
+			autoScrolling: false
+	else
+		# remove the overflow hidden that stops scrolling if we are not on a "fullPage" page.
+		$("html, body").css("overflow", "scroll")
+		
 	### Hide stuff on load ###
 	$("#showMeTheMoney, #signUpButton").attr("disabled", true)
 
 	### Listeners ###
 
 	# When anything changes on the sign up form.
-	$('#subscriptionForm').on 'change', (e) ->
+	$("#subscriptionForm").on "change", (e) ->
 		# We will check and enable this button if everything is correct at each change
 		$("#showMeTheMoney").attr("disabled", true)
 		# Do you have an e-cigarette?
-		if $(e.target).attr('name') == 'subscription[initial_ecigarette]'
+		if $(e.target).attr("name") == "subscription[initial_ecigarette]"
 			resetFlavoursPicker()
 
-			user.ecigarette = $('input:radio[name = "subscription[initial_ecigarette]"]:checked').val()
+			user.ecigarette = $("input:radio[name = 'subscription[initial_ecigarette]']:checked").val()
 
 			$("#quantityTip").addClass("hidden")
 			$(".subscription-offer").addClass("hidden")
@@ -125,10 +134,10 @@ $ ->
 			$.fn.fullpage.moveSectionDown()
 
 		# How much e-liquid do you want?
-		if $(e.target).attr('name') == "subscription[subscription_plan_id]"
+		if $(e.target).attr("name") == "subscription[subscription_plan_id]"
 			resetFlavoursPicker()
 			
-			$('#showMeTheMoney').attr('disabled', false)
+			$("#showMeTheMoney").attr("disabled", false)
 
 			# TODO be less shit.
 			# Because of hackery, rails will only pull out the second select
@@ -136,8 +145,8 @@ $ ->
 			# make sure both selects have the same value for form submission
 			$(".subscription-plan-select").val($(e.target).val())
 
-			user.price = $(e.target).find(':selected').data('price')
-			user.bottles =  $(e.target).find(':selected').data('bottles')
+			user.price = $(e.target).find(":selected").data("price")
+			user.bottles =  $(e.target).find(":selected").data("bottles")
 
 			$("#flavours").removeClass("hidden")
 			$("#flavoursTip").addClass("hidden")
@@ -156,16 +165,16 @@ $ ->
 
 			$.fn.fullpage.moveSectionDown()
 
-		if $(e.target).attr('name') == "subscription_choices[]"
+		if $(e.target).attr("name") == "subscription_choices[]"
 			if allFlavoursPicked(user.bottles)
 				$("#showMeTheMoney").attr("disabled", false)
 
-	$("#letMePick").on 'click', ->
+	$("#letMePick").on "click", ->
 		$("#preSelectedBottles").addClass("hidden")
 		$("#boxContent").removeClass("hidden")
 		showFlavourPicker()
 
-	$("#showMeTheMoney").on 'click', (e) ->
+	$("#showMeTheMoney").on "click", (e) ->
 		e.preventDefault()
 		$(".subscription-offer").removeClass("hidden")
 		$("#signUpButton").attr("disabled", false)
@@ -173,11 +182,24 @@ $ ->
 		showSubscription()
 		$.fn.fullpage.moveSectionDown()
 
-	$("#signUpButton, #enterAddress, #selectShippingDay, #enterCardDetails").on 'click', (e) ->
+	$("#signUpButton, #enterAddress, #selectShippingDay, #enterCardDetails").on "click", (e) ->
 		e.preventDefault()
 		$.fn.fullpage.moveSectionDown()
 
 
 
-	$('#subscriptionEditForm').on 'load', (e) ->
-		console.log("yellow")
+	$("#subscriptionEditForm").on "change", (e) ->
+		# How much e-liquid do you want?
+		if $(e.target).attr("name") == "subscription[subscription_plan_id]"
+			$choices = $("select[id*='subscription_choices']")
+			user.choices = []
+
+			user.price = $(e.target).find(":selected").data("price")
+			user.bottles =  $(e.target).find(":selected").data("bottles")
+			for $choice in $choices
+				user.choices.push($choice.value)
+
+			resetFlavoursPicker()
+
+			setupFlavourPicker(user.bottles, user.choices)
+			$(".subscription-price").empty().text("£" + user.price)

@@ -19,4 +19,6 @@
 //= require stripe
 
 
-document.getElementsByTagName('html')[0].className = 'js'
+$('document').ready(function() {
+    $('html').addClass('js');
+});
