@@ -21,4 +21,27 @@
 
 $('document').ready(function() {
     $('html').addClass('js');
+    
+    $('.footer-trigger').click(function(e) {
+        var $footer = $("footer"),
+            $footerTrigger = $(".footer-trigger"),
+            animationSpeed = 500;
+            
+        
+        if($footer.is(":visible")) {
+            $footerTrigger.animate(
+                {bottom: 0},
+                animationSpeed
+            );
+            $footerTrigger.find(".glyphicon").removeClass("glyphicon-chevron-down").addClass("glyphicon-chevron-up");
+            $footer.slideUp(animationSpeed);
+        } else {
+            $footerTrigger.animate(
+                {bottom: "10%"},
+                animationSpeed
+            );
+            $footerTrigger.find(".glyphicon").removeClass("glyphicon-chevron-up").addClass("glyphicon-chevron-down");
+            $footer.slideDown(animationSpeed);
+        }
+    })
 });
