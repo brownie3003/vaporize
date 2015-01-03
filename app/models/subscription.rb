@@ -83,8 +83,16 @@ class Subscription < ActiveRecord::Base
 			global_merge_vars: [
 					{
 							name: 'name',
-							content: self.first_name
-					}
+							content: self.first_name,
+					},
+			        {
+					        name: 'subscription',
+					        content: self.subscription_plan.bottle_count_description
+			        },
+			        {
+					        name: 'shipping_date',
+			                content: next_shipping_day(get_first_shipping_date)
+			        }
 			],
 		}
 
@@ -105,5 +113,16 @@ class Subscription < ActiveRecord::Base
 	private
 		def get_stripe_customer
 			Stripe::Customer.retrieve(self.stripe_customer_id)
+		end
+	
+		def get_first_shipping_date
+			today = Date.today
+			proposed_shipping_date = Date.new(today.year, today.month, self.shipping_day)
+			
+			today < proposed_shipping_date ? proposed_shipping_date : today + 1.month
+		end
+	
+		def next_shipping_day(proposed_shipping_date)
+			proposed_shipping_date.wday == 0 ? proposed_shipping_date + 1 : proposed_shipping_date 
 		end
 end

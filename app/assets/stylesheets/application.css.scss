@@ -71,6 +71,23 @@ footer {
     display: none;
     height: 10%;
     width: 100%;
+    color: #A3ABB6;
     background-color: rgb(245, 245, 245);
     position: fixed;
+    .container {
+        display: table;
+    }
+    .footer-menu {
+        display: table-cell;
+    }
+    ul {
+        text-align: center;
+        list-style: none;
+        padding: 8px;
+        vertical-align: middle;
+        li {
+            padding: 10px;
+            display: inline-block;
+        }
+    }
 }
